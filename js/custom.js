@@ -77,11 +77,12 @@ var textObj = (function(){
 			{
 				//assign list items and option items containing the recorded 
 				//values of committed array
-				list += "<li>" + 
+
+				list += "<li id = \"" + this.commitArray[i] + "\">" + 
 				(i+1) + " : " +
 				this.commitArray[i] + "</li>";
 
-				listSelect += "<option value = '" + this.commitArray[i] + "'>" +
+				listSelect += "<option value = \"" + this.commitArray[i] + "\">" +
 				"Log: " + (i+1) +
 				"</option>";
 			}
@@ -98,6 +99,8 @@ var textObj = (function(){
 			
 			//update latest entry slot with very last item of array
 			this.latestEntry.html(this.commitArray[this.commitArray.length-1]);
+
+			console.log(textObj.logSelect.children().children('option:last-child').val());
 		},
 
 		isPermittedKey:function(e)
@@ -175,4 +178,3 @@ function regulateNavMenuNotSelected(e)
 			containers.has(e.target).length === 0 &&
 			containers.hasClass('active') );
 }
-
