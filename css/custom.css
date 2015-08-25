@@ -1,0 +1,88 @@
+/*************************
+MAIN PAGE: NAVIGATION MENUS
+**************************/
+
+.slideOutMenu
+{
+	position:absolute;
+	background-color:#333;
+	list-style:none;
+	text-align:center;
+	margin:0;
+	padding:0;
+	left:-500px;
+	width:200px;
+	visibility:hidden;
+	opacity:0;
+	border:2px silver white;
+	transition:left 0s linear 1s, visibility 0.5s ease, opacity 0.5s ease;
+	-webkit-transition:left 0s linear 1s, visibility 0.5s ease, opacity 0.5s ease;
+	-o-transition:left 0s linear 1s, visibility 0.5s ease, opacity 0.5s ease;
+	-moz-transition:left 0s linear 1s, visibility 0.5s ease, opacity 0.5s ease;
+	-ms-transition:left 0s linear 1s, visibility 0.5s ease, opacity 0.5s ease;
+}
+
+.slideOutMenu a 
+{
+	display:block;
+	padding:10px 0;
+	text-decoration:none;
+	border-bottom:1px solid black;
+	color:#fff;
+}
+
+.slideOutMenu a:hover
+{
+	background-color:#444;
+}
+
+.slideOutMenu a:active
+{
+	background-color:#888;
+}
+
+.slideOutMenu.active
+{
+	opacity:1;
+	visibility:visible;
+	left:-16px;
+	transition:left 0s linear 0s, visibility 0.5s ease, opacity 0.5s ease;
+	-moz-transition:left 0s linear 0s, visibility 0.5s ease, opacity 0.5s ease;
+	-o-transition:left 0s linear 0s, visibility 0.5s ease, opacity 0.5s ease;
+	-ms-transition:left 0s linear 0s, visibility 0.5s ease, opacity 0.5s ease;
+	-webkit-transition:left 0s linear 0s, visibility 0.5s ease, opacity 0.5s ease;
+}
+
+/*********************************
+	MAIN PAGE - MODALS - TEXTFIELD COMMIT
+*********************************/
+
+#testTextField
+{
+	margin-bottom:10px;
+}
+
+#commitArrayList
+{
+	overflow-y:scroll;
+	max-height:200px;
+}
+
+#commitArrayList ul
+{
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+
+#commitArrayList li
+{
+	padding:5px;
+	border-bottom:1px solid #ddd;
+}
+
+#commitArrayList li.highlight
+{
+	background-color:lightblue;
+	border: 1px solid #000;
+}
