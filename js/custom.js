@@ -57,10 +57,13 @@ var textObj = (function(){
 
 				//assign onChange event handler to updated select tag
 				this.logSelect.children('select').change(function(){
+					var test = $(this).children('option:selected').attr('class');
 					//set Latest Entry slot to display 'selected option''s text value
 					$(this).parent().next().text($(this).val());
 					//update text box to show the same value as 'selected option'
 					textObj.textField.val($(this).val());
+
+					$('#commitArrayList').animate( { scrollTop: ( $( "#" + test ).position().top + $('#commitArrayList').scrollTop() ) } );
 				});
 			}
 
@@ -78,11 +81,13 @@ var textObj = (function(){
 				//assign list items and option items containing the recorded 
 				//values of committed array
 
-				list += "<li id = \"" + this.commitArray[i] + "\">" + 
+				list += "<li id ='Log_" + (i+1) + "'>" + 
 				(i+1) + " : " +
 				this.commitArray[i] + "</li>";
 
-				listSelect += "<option value = \"" + this.commitArray[i] + "\">" +
+				listSelect += "<option " +
+				"value = \"" + this.commitArray[i] + "\" " + 
+				"class= \"Log_" + (i+1) + "\" >" +
 				"Log: " + (i+1) +
 				"</option>";
 			}
@@ -188,4 +193,8 @@ function compareBytes(object,byteLimit)
 	}
 	return object + " : " + object.length;
 }
+
+$(document).mousemove(function(event){
+	//console.log(event.pageX + " : " + event.pageY);
+});
 
