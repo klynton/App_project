@@ -178,3 +178,14 @@ function regulateNavMenuNotSelected(e)
 			containers.has(e.target).length === 0 &&
 			containers.hasClass('active') );
 }
+
+
+function compareBytes(object,byteLimit)
+{
+	while(sizeof(object) > byteLimit) 
+	{
+		object = object.substring(0,object.length - 1);
+	}
+	return object + " : " + object.length;
+}
+
