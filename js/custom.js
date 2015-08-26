@@ -35,7 +35,7 @@ var textObj = (function(){
 				this.commitArray.push(this.textField.val());
 
 				//set backlog limit
-				if(this.commitArray.length > 100)
+				if(this.commitArray.length > 500)
 					this.commitArray.shift(); //remove oldest recorded log
 
 				//save array in localStorage object
