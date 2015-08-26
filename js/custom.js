@@ -197,7 +197,14 @@ function compareBytes(object,byteLimit)
 	return object + " : " + object.length;
 }
 
-$(document).mousemove(function(event){
-	//console.log(event.pageX + " : " + event.pageY);
-});
+/******************************
+	TO DO LIST
+*******************************/
 
+//change log selection option tags to hypertext links
+//make object variables more accessible
+//shorten chained methods by use of variables
+//do not assign log selection values with entire textfield text
+//make log selection links assign values based on commitArrayList logs
+//refactor sloppy code
+//delete deprecated variables/methods/functions
