@@ -150,8 +150,11 @@ function loadCommitedTextField()
 		textObj.textField.val(textObj.logSelect.children().children('option:last-child').val());
 
 		textObj.logSelect.change(function(){
+			var test = $(this).children().children('option:selected').attr('class');
 			$(this).next().text($(this).children().val());
 			textObj.textField.val($(this).children().val());
+
+			$('#commitArrayList').animate( { scrollTop: ( $( "#" + test ).position().top + $('#commitArrayList').scrollTop() ) } );
 		});
 	}
 }
