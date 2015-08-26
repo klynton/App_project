@@ -62,17 +62,13 @@ MAIN PAGE: NAVIGATION MENUS
 	margin-bottom:10px;
 }
 
-#commitArrayList
+#commitArrayList,#logSelection
 {
 	overflow-y:scroll;
 	max-height:200px;
-}
-
-#commitArrayList ul
-{
-	list-style:none;
 	padding:0;
 	margin:0;
+	list-style:none;
 }
 
 #commitArrayList li

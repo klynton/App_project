@@ -16,8 +16,8 @@ var textObj = (function(){
 		selectedArrayItem:0,
 		arrayFocus:false,
 		loadButton:$('#commitArrayLoad'),
-		logSelect:$('.catchText div:first-child'),
-		latestEntry:$('.catchText div + div'),
+		logSelect:$('#logSelection'),
+		latestEntry:$('#latestEntry'),
 		commitList:$('#commitArrayList'),
 
 		/***********************
@@ -44,27 +44,14 @@ var textObj = (function(){
 				//inject information from list array to page HTML
 				this.updateArrayList();
 
-				//reset all possible option tags with 'selected' properties
-				this.logSelect.children()
-							  .children('option')
+				//reset all possible list items tags with 'selected' properties
+				this.logSelect.children('li')
 							  .attr('selected',false);
 
-				//update very last option tag and assign 'selected' property
-				this.logSelect.children()
-							  .children('option:last-child')
+				//update very last list item and assign 'selected' property
+				this.logSelect.children('li:last-child')
 							  .attr('selected',true);
 				
-
-				//assign onChange event handler to updated select tag
-				this.logSelect.children('select').change(function(){
-					var test = $(this).children('option:selected').attr('class');
-					//set Latest Entry slot to display 'selected option''s text value
-					$(this).parent().next().text($(this).val());
-					//update text box to show the same value as 'selected option'
-					textObj.textField.val($(this).val());
-
-					$('#commitArrayList').animate( { scrollTop: ( $( "#" + test ).position().top + $('#commitArrayList').scrollTop() ) } );
-				});
 			}
 
 			console.log(e.keyCode);
@@ -73,39 +60,33 @@ var textObj = (function(){
 		updateArrayList:function()
 		{
 			//create select tag and ol tag
-			var list = "<ol>",
-				listSelect = "<select>";
+			var commitArrayList = "",
+				logSelectionList = "";
 
 			for(i = 0; i < this.commitArray.length;i++)
 			{
-				//assign list items and option items containing the recorded 
+				//assign list items containing the recorded 
 				//values of committed array
 
-				list += "<li id ='Log_" + (i+1) + "'>" + 
+				commitArrayList += "<li id ='Log_" + (i+1) + "'>" + 
 				(i+1) + " : " +
 				this.commitArray[i] + "</li>";
 
-				listSelect += "<option " +
-				"value = \"" + this.commitArray[i] + "\" " + 
+				logSelectionList += "<li " + 
 				"class= \"Log_" + (i+1) + "\" >" +
-				"Log: " + (i+1) +
-				"</option>";
+				"<a href='#'>" +
+				"Log: " + (i+1) + 
+				"</a>" + "</li>";
 			}
 
-			list += "</ol>";
-			listSelect += "</select>";
-
 			//inject ordered list
-			this.commitList
-				.html(list);
+			this.commitList.html(commitArrayList);
 
-			//inject select tag with options
-			this.logSelect.html(listSelect);
+			//inject ul tag with list items
+			this.logSelect.html(logSelectionList);
 			
 			//update latest entry slot with very last item of array
 			this.latestEntry.html(this.commitArray[this.commitArray.length-1]);
-
-			console.log(textObj.logSelect.children().children('option:last-child').val());
 		},
 
 		isPermittedKey:function(e)
@@ -127,6 +108,8 @@ var textObj = (function(){
 textObj.textField.keyup(function(event){textObj.commitToArray(event);});
 
 textObj.loadButton.click(loadCommitedTextField);
+
+textObj.logSelect.on("click","li", logClickEvent);
 
 /************************
 TEXT COMMIT - FUNCTIONS
@@ -159,6 +142,35 @@ function loadCommitedTextField()
 	}
 }
 
+function logClickEvent(event){
+	event.preventDefault();
+	var value = $(this).attr('class'),
+		correspondingCommitLog = $("#" + value);
+
+	$('#latestEntry').text(correspondingCommitLog.text());
+	textObj.textField.val(correspondingCommitLog.text());
+	textObj.commitList.animate({
+		scrollTop: ( correspondingCommitLog
+							   .position().top + 
+						textObj.commitList
+							   .scrollTop() )
+	});
+	//$(correspondingCommitLog).css('background-color','#0000FF');
+	
+	/*
+	//set Latest Entry slot to display 'selected' text value
+	$('#latestEntry').text($(this).val());
+	
+	var test = $(this).children('option:selected').attr('class');
+	
+	$(this).parent().next().children().text($(this).val());
+	//update text box to show the same value as 'selected item'
+	textObj.textField.val($(this).val());
+	*/
+
+	//$('#commitArrayList').animate( { scrollTop: ( $( correspondingCommitLog ).position().top + $('#commitArrayList').scrollTop() ) } );
+}
+
 /**************************/
 
 
@@ -168,7 +180,6 @@ $(document).click(function(e){
 		$('.slideOutMenu').toggleClass('active');
 	}
 });
-
 
 $('.slideOutToggle').click(function(event){
 	$(this).next().toggleClass('active');
