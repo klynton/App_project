@@ -137,7 +137,7 @@ function loadCommitedTextField()
 			$(this).next().text($(this).children().val());
 			textObj.textField.val($(this).children().val());
 
-			$('#commitArrayList').animate( { scrollTop: ( $( "#" + test ).position().top + $('#commitArrayList').scrollTop() ) } );
+			textObj.commitList.animate( { scrollTop: ( $( "#" + test ).position().top + $('#commitArrayList').scrollTop() ) } );
 		});
 	}
 }
