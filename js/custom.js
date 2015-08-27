@@ -43,14 +43,6 @@ var textObj = (function(){
 
 				//inject information from list array to page HTML
 				this.updateArrayList();
-
-				//reset all possible list items tags with 'selected' properties
-				this.logSelect.children('li')
-							  .attr('selected',false);
-
-				//update very last list item and assign 'selected' property
-				this.logSelect.children('li:last-child')
-							  .attr('selected',true);
 				
 			}
 
@@ -125,29 +117,17 @@ function loadCommitedTextField()
 		textObj.commitArray = storageArray;
 
 		textObj.updateArrayList();
-
-		textObj.logSelect.children().children().attr('selected',false);
-
-		textObj.logSelect.children().children('option:last-child').attr('selected',true);
-
-		textObj.textField.val(textObj.logSelect.children().children('option:last-child').val());
-
-		textObj.logSelect.change(function(){
-			var test = $(this).children().children('option:selected').attr('class');
-			$(this).next().text($(this).children().val());
-			textObj.textField.val($(this).children().val());
-
-			textObj.commitList.animate( { scrollTop: ( $( "#" + test ).position().top + $('#commitArrayList').scrollTop() ) } );
-		});
 	}
 }
 
 function logClickEvent(event){
+
 	event.preventDefault();
+
 	var value = $(this).attr('class'),
 		correspondingCommitLog = $("#" + value);
 
-	$('#latestEntry').text(correspondingCommitLog.text());
+	textObj.latestEntry.text(correspondingCommitLog.text());
 	textObj.textField.val(correspondingCommitLog.text());
 	textObj.commitList.animate({
 		scrollTop: ( correspondingCommitLog
@@ -155,20 +135,6 @@ function logClickEvent(event){
 						textObj.commitList
 							   .scrollTop() )
 	});
-	//$(correspondingCommitLog).css('background-color','#0000FF');
-	
-	/*
-	//set Latest Entry slot to display 'selected' text value
-	$('#latestEntry').text($(this).val());
-	
-	var test = $(this).children('option:selected').attr('class');
-	
-	$(this).parent().next().children().text($(this).val());
-	//update text box to show the same value as 'selected item'
-	textObj.textField.val($(this).val());
-	*/
-
-	//$('#commitArrayList').animate( { scrollTop: ( $( correspondingCommitLog ).position().top + $('#commitArrayList').scrollTop() ) } );
 }
 
 /**************************/
@@ -207,15 +173,3 @@ function compareBytes(object,byteLimit)
 	}
 	return object + " : " + object.length;
 }
-
-/******************************
-	TO DO LIST
-*******************************/
-
-//change log selection option tags to hypertext links
-//make object variables more accessible
-//shorten chained methods by use of variables
-//do not assign log selection values with entire textfield text
-//make log selection links assign values based on commitArrayList logs
-//refactor sloppy code
-//delete deprecated variables/methods/functions
