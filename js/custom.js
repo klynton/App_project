@@ -147,6 +147,15 @@ function logClickEvent(event)
 
 /**************************/
 
+/***************************
+MAIN CONTENT - Purchase Form
+**************************/
+
+var purchaseForm = (function(){
+	
+})();
+
+/************************/
 
 $(document).click(function(e){
 	if( regulateNavMenuNotSelected(e) )
