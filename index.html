@@ -2,7 +2,7 @@
 <html lang='en'>
 
 	<head>
-		<title>Branch App Project Ver. 6</title>
+		<title>Branch App Project Ver. 7</title>
 		<meta charset='utf-8'>
 		<meta name='viewport' content='width=device-width,initial-scale=1.0'>
 		<!--BOOTSTRAP -->
@@ -126,7 +126,52 @@
 
 				<div class='modal-body'>
 
-					<p>content</p>
+					<h3>Extra Virgin, Cold-Pressed</h3>
+
+					<p>Price: $10/bottle</p>
+					<p>Quantity desired:<input type='text' value='0'></p>
+
+					<h3>Cold-Pressed</h3>
+
+					<p>Price: $8/bottle</p>
+					<p>Quantity desired:<input type='text' value='0'></p>
+
+					<h3>Garlic-infused</h3>
+
+					<p>Price: $10/bottle</p>
+					<p>Quantity desired:<input type='text' value='0'></p>
+
+					<h3>Estimate Order</h3>
+					<label for='select-state'>State:</label>
+					<select id='select-state'>
+						<option value=''>- select -</option>
+						<option value = 'CA'>California(7.5%)</option>
+						<option value = 'IL'>Illinois</option>
+						<option value = 'NH'>New Hampshire</option>
+						<option value = 'PA'>Pennsylvania</option>
+					</select>
+
+					<label for='r-group'>Shipping Method:</label>
+
+					<div id='r-group'>
+						<div class='radio_pair'>
+							<input type='radio' value='free' name='method_r' id='r-method-pickup'>
+							<label for='r-method-pickup'>Pickup(free)</label>
+						</div>
+						<div class='radio-pair'>
+							<input type='radio' value='usps' name='method_r' id='r-method-usps'>
+							<label for='r-method-usps'>US Mail ($2/bottle)</label>
+						</div>
+						<div class='radio-pair'>
+							<input type='radio' value='ups' name='method_r' id='r-method-ups'>
+							<label for='r-method-ups'>UPS($3/bottle)</label>	
+						</div>
+
+					</div>
+
+					<p>
+						Click to estimate: <input type='submit' id='purchaseTotal' value='Estimate Total'><input type='text' value='$0.00'>
+					</p>
 
 				</div>
 
@@ -145,8 +190,9 @@
 	</div><!--end of modal-->
 
 	<!--javascript-->
-		<!--jQuery CDN -->
+		<!--jQuery CDN
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		-->
 		<script>window.jQuery || document.write('<script src="jquery-library/jquery.js"><\/script>');</script>
 
 	<!--BOOTSTRAP JS CDN 

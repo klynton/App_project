@@ -3,9 +3,6 @@
 ******************************/
 
 var textObj = (function(){
-	var DEFAULTS = {
-		
-	};
 	return {
 
 		/**********************
@@ -13,8 +10,6 @@ var textObj = (function(){
 		**********************/
 		textField:$('#testTextField'),
 		commitArray:[],
-		selectedArrayItem:0,
-		arrayFocus:false,
 		loadButton:$('#commitArrayLoad'),
 		logSelect:$('#logSelection'),
 		latestEntry:$('#latestEntry'),
@@ -125,7 +120,8 @@ function loadCommitedTextField()
 	textObj.updateArrayList();
 }
 
-function logClickEvent(event){
+function logClickEvent(event)
+{
 
 	event.preventDefault();//disable default click properties of hypertext links
 
@@ -151,6 +147,15 @@ function logClickEvent(event){
 
 /**************************/
 
+/***************************
+MAIN CONTENT - Purchase Form
+**************************/
+
+var purchaseForm = (function(){
+	
+})();
+
+/************************/
 
 $(document).click(function(e){
 	if( regulateNavMenuNotSelected(e) )
