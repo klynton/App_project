@@ -190,10 +190,6 @@ var purchaseForm = (function(){
 				shippingMethod,
 				tax = this.taxFactor;
 
-			if(typeof this.firstInput.val() !== "number") first = 0;
-			if(typeof this.secondInput.val() !== "number") second = 0;
-			if(typeof this.thirdInput.val() !== "number") third = 0;
-
 			var methods = $('input[name="method_r"]');
 
 			methods.each(function(){
