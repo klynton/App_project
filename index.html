@@ -125,53 +125,55 @@
 				</div>
 
 				<div class='modal-body'>
+					<form id='purchaseForm'>
 
-					<h3>Extra Virgin, Cold-Pressed</h3>
+						<h3>Extra Virgin, Cold-Pressed</h3>
 
-					<p>Price: $10/bottle</p>
-					<p>Quantity desired:<input type='text' value='0'></p>
+						<p>Price: $10/bottle</p>
+						<p>Quantity desired:<input type='text' value='0' id='extra-btl'></p>
 
-					<h3>Cold-Pressed</h3>
+						<h3>Cold-Pressed</h3>
 
-					<p>Price: $8/bottle</p>
-					<p>Quantity desired:<input type='text' value='0'></p>
+						<p>Price: $8/bottle</p>
+						<p>Quantity desired:<input type='text' value='0' id='cold-btl'></p>
 
-					<h3>Garlic-infused</h3>
+						<h3>Garlic-infused</h3>
 
-					<p>Price: $10/bottle</p>
-					<p>Quantity desired:<input type='text' value='0'></p>
+						<p>Price: $10/bottle</p>
+						<p>Quantity desired:<input type='text' value='0' id='garlic-btl'></p>
 
-					<h3>Estimate Order</h3>
-					<label for='select-state'>State:</label>
-					<select id='select-state'>
-						<option value=''>- select -</option>
-						<option value = 'CA'>California(7.5%)</option>
-						<option value = 'IL'>Illinois</option>
-						<option value = 'NH'>New Hampshire</option>
-						<option value = 'PA'>Pennsylvania</option>
-					</select>
+						<h3>Estimate Order</h3>
+						<label for='select-state'>State:</label>
+						<select id='select-state'>
+							<option value=''>- select -</option>
+							<option value = 'CA'>California(7.5%)</option>
+							<option value = 'IL'>Illinois</option>
+							<option value = 'NH'>New Hampshire</option>
+							<option value = 'PA'>Pennsylvania</option>
+						</select>
 
-					<label for='r-group'>Shipping Method:</label>
+						<label for='r-group'>Shipping Method:</label>
 
-					<div id='r-group'>
-						<div class='radio_pair'>
-							<input type='radio' value='free' name='method_r' id='r-method-pickup'>
-							<label for='r-method-pickup'>Pickup(free)</label>
+						<div id='r-group'>
+							<div class='radio_pair'>
+								<input type='radio' value='free' name='method_r' id='r-method-pickup'>
+								<label for='r-method-pickup'>Pickup(free)</label>
+							</div>
+							<div class='radio-pair'>
+								<input type='radio' value='usps' name='method_r' id='r-method-usps'>
+								<label for='r-method-usps'>US Mail ($2/bottle)</label>
+							</div>
+							<div class='radio-pair'>
+								<input type='radio' value='ups' name='method_r' id='r-method-ups'>
+								<label for='r-method-ups'>UPS($3/bottle)</label>	
+							</div>
+
 						</div>
-						<div class='radio-pair'>
-							<input type='radio' value='usps' name='method_r' id='r-method-usps'>
-							<label for='r-method-usps'>US Mail ($2/bottle)</label>
-						</div>
-						<div class='radio-pair'>
-							<input type='radio' value='ups' name='method_r' id='r-method-ups'>
-							<label for='r-method-ups'>UPS($3/bottle)</label>	
-						</div>
 
-					</div>
-
-					<p>
-						Click to estimate: <input type='submit' id='purchaseTotal' value='Estimate Total'><input type='text' value='$0.00'>
-					</p>
+						<p>
+							Click to estimate: <input type='submit' id='purchaseTotal' value='Estimate Total'><input type='text' value='$0.00' id='totalInput'>
+						</p>
+					</form>
 
 				</div>
 

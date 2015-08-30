@@ -82,3 +82,17 @@ MAIN PAGE: NAVIGATION MENUS
 	background-color:lightblue;
 	border: 1px solid #000;
 }
+
+/************************
+MAIN CONTENT - PURCHASE FORM
+*************************/
+
+label[for='r-group']
+{
+	display:block;
+}
+
+#purchaseTotal 
+{
+	margin-right:8px;
+}
