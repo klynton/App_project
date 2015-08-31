@@ -95,6 +95,7 @@ var textObj = (function(){
 
 		savingTimer:function()
 		{
+			this.resetLimit = parseInt($('#timerSelect').val()) * 1000;
 			//every time key is pressed //
 				//reset counter to 1
 			this.resetCounter = 1;
