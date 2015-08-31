@@ -132,6 +132,8 @@ textObj.commitButton.click(function(){textObj.commitToArray();clearInterval(text
 //be reset with click handlers
 textObj.logSelect.on("click","li", logClickEvent);
 
+$('#clearTextBox').click(function(){textObj.textField.val(''); clearInterval(textObj.resetTimer);});
+
 /************************
 TEXT COMMIT - FUNCTIONS
 *************************/
