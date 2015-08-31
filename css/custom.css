@@ -66,6 +66,10 @@ MAIN PAGE: NAVIGATION MENUS
 {
 	overflow-y:scroll;
 	max-height:200px;
+}
+
+#commitArrayList ul, #logSelection ul
+{
 	padding:0;
 	margin:0;
 	list-style:none;

@@ -11,12 +11,13 @@ var textObj = (function(){
 		textField:$('#testTextField'),
 		commitArray:[],
 		loadButton:$('#commitArrayLoad'),
+		commitButton:$('#commitArraySave'),
 		logSelect:$('#logSelection'),
 		latestEntry:$('#latestEntry'),
 		commitList:$('#commitArrayList'),
 		resetTimer:undefined,
 		resetCounter:2,
-		resetLimit:1000,
+		resetLimit:5000,
 
 		/***********************
 		METHODS
@@ -36,39 +37,60 @@ var textObj = (function(){
 				localStorage.commitArray = JSON.stringify(this.commitArray);
 
 			// 	//inject information from list array to page HTML
-			 	this.updateArrayList();
+			 	this.commitOneLine();
 		},
 
-		updateArrayList:function()
+		commitOneLine:function()
 		{
-			//create select tag and ol tag
-			var commitArrayList = "",
-				logSelectionList = "";
+			var listItem = $('<li>'),
+				pre = $('<pre>'),
+				logSelectItem = $('<li>'),
+				logAnchor = $('<a>');
 
-			for(i = 0; i < this.commitArray.length;i++)
+			pre.text(this.commitArray[this.commitArray.length-1]);
+
+			listItem.attr('id',"Log_" + this.commitArray.length)
+				    .text("Log : " + this.commitArray.length)
+				    .append(pre);
+
+			logAnchor.attr('href','#')
+					 .text("Log : " + this.commitArray.length);
+
+			logSelectItem.addClass("Log_" + this.commitArray.length)
+						 .append(logAnchor);
+
+
+			this.commitList.append(listItem);
+			this.logSelect.append(logSelectItem);
+		},
+
+		updateFullArray:function()
+		{
+			var commitArrayList = this.commitList,
+				logSelection = this.logSelect;
+
+			for(var i = 0; i < this.commitArray.length;i++)
 			{
-				//assign list items containing the recorded 
-				//values of committed array
+				var commitListItem = $('<li>'),
+					pre = $('<pre>'),
+					logSelectItem = $('<li>'),
+					logAnchor = $('<a>');
 
-				commitArrayList += "<li id ='Log_" + (i+1) + "'>" + 
-				(i+1) + " : " +
-				this.commitArray[i] + "</li>";
+				pre.text(this.commitArray[i]);
 
-				logSelectionList += "<li " + 
-				"class= \"Log_" + (i+1) + "\" >" +
-				"<a href='#'>" +
-				"Log: " + (i+1) + 
-				"</a>" + "</li>";
+				commitListItem.attr('id',"Log_" + (i+1))
+							  .text("Log: " + (i+1))
+							  .append(pre);
+
+				logAnchor.attr('href','#')
+						 .text("Log : " + (i+1));
+
+				logSelectItem.addClass('Log_' + (i+1))
+							.append(logAnchor);
+
+				commitArrayList.append(commitListItem);
+				logSelection.append(logSelectItem);
 			}
-
-			//inject ordered list
-			this.commitList.html(commitArrayList);
-
-			//inject ul tag with list items
-			this.logSelect.html(logSelectionList);
-			
-			//update latest entry slot with very last item of array
-			this.latestEntry.html(this.commitArray[this.commitArray.length-1]);
 		},
 
 		savingTimer:function()
@@ -102,6 +124,8 @@ textObj.textField.keydown(function(){textObj.savingTimer();});
 
 textObj.loadButton.click(loadCommitedTextField);
 
+textObj.commitButton.click(function(){textObj.commitToArray();clearInterval(textObj.resetTimer);});
+
 //setting jQuery's .on('click') method to textObj.logSelect's list item children
 //handles delegation as well, so that the log hypertext links dont need to
 //be reset with click handlers
@@ -117,7 +141,7 @@ function loadCommitedTextField()
 
 	textObj.commitArray = storageArray;
 
-	textObj.updateArrayList();
+	textObj.updateFullArray();
 }
 
 function logClickEvent(event)
@@ -126,7 +150,7 @@ function logClickEvent(event)
 	event.preventDefault();//disable default click properties of hypertext links
 
 	var value = $(this).attr('class'),//cache the class name only
-		correspondingCommitLog = $("#" + value);//cache jQuery object with the id 
+		correspondingCommitLog = $("#" + value).children('pre');//cache jQuery object with the id 
 												//equal to the link's class name
 
 	//set the latestEntry to the commit list with corresponding 
@@ -138,7 +162,7 @@ function logClickEvent(event)
 
 	//commit list should scroll down to the top of the element of the selected list item
 	textObj.commitList.animate({
-		scrollTop: ( correspondingCommitLog
+		scrollTop: ( correspondingCommitLog.parent()
 							   .position().top + 
 						textObj.commitList
 							   .scrollTop() )
@@ -168,7 +192,6 @@ var purchaseForm = (function(){
 		purchaseTotal:$('#totalInput'),
 		taxFactor:1,
 		/*****************************/
-
 
 		/*************************
 		METHODS

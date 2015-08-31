@@ -82,16 +82,11 @@
 						<textarea class='form-control' rows='3'  width='400' height='400' id='testTextField'></textarea>
 					</form>
 					<div class='row'>
-						<div class='catchText col-sm-7'>
-							<div class='col-sm-7'>
-								<ol id='logSelection'></ol>
-							</div>
-							<div class='col-sm-5'>
-								<div id='latestEntry'></div>
-							</div>
+						<div class='catchText col-sm-5'>
+							<ul id='logSelection'></ul>
 						</div>
-						<div class='col-sm-5'>
-							<ol id='commitArrayList'></ol>
+						<div class='col-sm-7'>
+							<ul id='commitArrayList'></ul>
 						</div>
 
 					</div>
@@ -100,6 +95,7 @@
 
 				<div class='modal-footer'>
 					<button id='commitArrayLoad' class='btn btn-success'>Load</button>
+					<button id='commitArraySave' class='btn btn-info'>Commit</button>
 					<button class='btn btn-primary' data-dismiss='modal'>Close</button>
 				</div>	
 
