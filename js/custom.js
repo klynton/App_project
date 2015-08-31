@@ -25,19 +25,21 @@ var textObj = (function(){
 
 		commitToArray:function(e)
 		{
+			if(this.textField.val().trim() !== "")
+			{
+				//push latest textfield value to end of array
+					this.commitArray.push(this.textField.val());
 
-			//push latest textfield value to end of array
-				this.commitArray.push(this.textField.val());
+				// 	//set backlog limit
+					if(this.commitArray.length > 100)
+						this.commitArray.shift(); //remove oldest recorded log
 
-			// 	//set backlog limit
-				if(this.commitArray.length > 100)
-					this.commitArray.shift(); //remove oldest recorded log
+				// 	//save array in localStorage object
+					localStorage.commitArray = JSON.stringify(this.commitArray);
 
-			// 	//save array in localStorage object
-				localStorage.commitArray = JSON.stringify(this.commitArray);
-
-			// 	//inject information from list array to page HTML
-			 	this.commitOneLine();
+				// 	//inject information from list array to page HTML
+				 	this.commitOneLine();
+			}
 		},
 
 		commitOneLine:function()
