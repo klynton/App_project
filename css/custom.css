@@ -100,3 +100,11 @@ label[for='r-group']
 {
 	margin-right:8px;
 }
+
+/*******************
+DEV TOOLS
+*******************/
+#byteSize
+{
+	margin-bottom:10px;
+}

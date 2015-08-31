@@ -40,6 +40,19 @@ var textObj = (function(){
 				// 	//inject information from list array to page HTML
 				 	this.commitOneLine();
 			}
+			var byteValue = "bytes", storageValue = sizeof(localStorage.commitArray);
+			if(storageValue > 1000 && storageValue < 1000000)
+			{
+				byteValue = "kilobytes";
+				storageValue /= 1000;
+			}
+			else if(storageValue > 1000000)
+			{
+				byteValue = "megabytes";
+				storageValue /= (1000 * 1000);
+			}
+
+			$('#byteSize').val(storageValue + " " + byteValue);
 		},
 
 		commitOneLine:function()
