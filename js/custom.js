@@ -33,6 +33,7 @@ var textObj = (function(){
 				// 	//set backlog limit
 					if(this.commitArray.length > 100)
 						this.commitArray.shift(); //remove oldest recorded log
+<<<<<<< HEAD
 
 				// 	//save array in localStorage object
 					localStorage.commitArray = JSON.stringify(this.commitArray);
@@ -40,6 +41,28 @@ var textObj = (function(){
 				// 	//inject information from list array to page HTML
 				 	this.commitOneLine();
 			}
+=======
+
+				// 	//save array in localStorage object
+					localStorage.commitArray = JSON.stringify(this.commitArray);
+
+				// 	//inject information from list array to page HTML
+				 	this.commitOneLine();
+			}
+			var byteValue = "bytes", storageValue = sizeof(localStorage.commitArray);
+			if(storageValue > 1000 && storageValue < 1000000)
+			{
+				byteValue = "kilobytes";
+				storageValue /= 1000;
+			}
+			else if(storageValue > 1000000)
+			{
+				byteValue = "megabytes";
+				storageValue /= (1000 * 1000);
+			}
+
+			$('#byteSize').val(storageValue + " " + byteValue);
+>>>>>>> altApp_Project_7.2
 		},
 
 		commitOneLine:function()
@@ -48,6 +71,7 @@ var textObj = (function(){
 				pre = $('<pre>'),
 				logSelectItem = $('<li>'),
 				logAnchor = $('<a>');
+
 
 			pre.text(this.commitArray[this.commitArray.length-1]);
 
