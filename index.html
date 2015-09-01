@@ -60,6 +60,57 @@
 
 		</div><!--end of navbar-->
 
+		<div id='timerSetting'>
+			<label for='timerSelect'>Saving intervals in seconds</label>
+			<select id='timerSelect'>
+				<option id='seconds_1' value='1'>1</option>
+				<option id='seconds_2' value='2'>2</option>
+				<option id='seconds_3' value='3'>3</option>
+				<option id='seconds_4' value='4'>4</option>
+				<option id='seconds_5' value='5'>5</option>
+				<option id='seconds_6' value='6'>6</option>
+				<option id='seconds_7' value='7'>7</option>
+				<option id='seconds_8' value='8'>8</option>
+				<option id='seconds_9' value='9'>9</option>
+				<option id='seconds_10' value='10'>10</option>
+			</select>
+		</div>
+		<input type='text' id='byteSize' placeholder='byteSize' disabled>
+		<div id='saveState' class='pull-right'>Save State</div>
+		<form accept-charset='utf-8'>
+			<textarea class='form-control' rows='3'  width='400' height='400' id='testTextField' placeholder='Type here'></textarea>
+			<a href='#' id='clearTextBox'>Clear Text</a>
+		</form>
+		<div class='row'>
+			<div class='catchText col-sm-5'>
+				<ul id='logSelection'></ul>
+			</div>
+			<div class='col-sm-7'>
+				<ul id='commitArrayList'></ul>
+			</div>
+
+		</div>
+
+		<button id='commitArrayLoad' class='btn btn-success'>Load</button>
+		<button id='commitArraySave' class='btn btn-info'>Commit</button>
+
+		<div id='enclosedAjaxEnviroment'>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<button id='loadAjax'>Load Ajax</button>
+			<div id='searchArea'>
+				<label for='search'>Live Search</label>
+				<input type='search' name='search' id='search' placeholder='name or info' />
+				<div id='searchDump'></div>
+			</div>
+		</div>
+
 	</div><!--end of container-->
 
 	<!--Modal for Text Field Commit-->
@@ -78,7 +129,7 @@
 
 				<div class='modal-body'>
 
-					<div id='timerSetting'>
+					<!-- <div id='timerSetting'>
 						<label for='timerSelect'>Saving intervals in seconds</label>
 						<select id='timerSelect'>
 							<option id='seconds_1' value='1'>1</option>
@@ -95,7 +146,7 @@
 					</div>
 					<input type='text' id='byteSize' placeholder='byteSize' disabled>
 					<form accept-charset='utf-8'>
-						<textarea class='form-control' rows='3'  width='400' height='400' id='testTextField'></textarea>
+						<textarea class='form-control' rows='3'  width='400' height='400' id='testTextField' placeholder='Type here'></textarea>
 						<a href='#' id='clearTextBox'>Clear Text</a>
 					</form>
 					<div class='row'>
@@ -106,13 +157,13 @@
 							<ul id='commitArrayList'></ul>
 						</div>
 
-					</div>
+					</div> -->
 					
 				</div>
 
 				<div class='modal-footer'>
-					<button id='commitArrayLoad' class='btn btn-success'>Load</button>
-					<button id='commitArraySave' class='btn btn-info'>Commit</button>
+					<!-- <button id='commitArrayLoad' class='btn btn-success'>Load</button>
+					<button id='commitArraySave' class='btn btn-info'>Commit</button> -->
 				</div>	
 
 			</div>
@@ -217,6 +268,8 @@
 
 	<!--CUSTOM JS FILE-->
 		<script src='js/custom.js'></script>
+
+		<script src='js/ajaxScript.js'></script>
 		
 	</body>
 </html>

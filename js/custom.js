@@ -17,7 +17,10 @@ var textObj = (function(){
 		commitList:$('#commitArrayList'),
 		resetTimer:undefined,
 		resetCounter:2,
-		resetLimit:5000,
+		resetLimit:0,
+		saveStateField:$('#saveState'),
+		saveStatus:undefined,
+		clearText:$('#clearTextBox'),
 
 		/***********************
 		METHODS
@@ -37,9 +40,11 @@ var textObj = (function(){
 				// 	//save array in localStorage object
 					localStorage.commitArray = JSON.stringify(this.commitArray);
 
-				// 	//inject information from list array to page HTML
+				// 	//inject new information from list array to page HTML
 				 	this.commitOneLine();
 			}
+
+			//DEV TOOLS//
 			var byteValue = "bytes", storageValue = sizeof(localStorage.commitArray);
 			if(storageValue > 1000 && storageValue < 1000000)
 			{
@@ -53,6 +58,7 @@ var textObj = (function(){
 			}
 
 			$('#byteSize').val(storageValue + " " + byteValue);
+			//*****************//
 		},
 
 		commitOneLine:function()
@@ -62,20 +68,24 @@ var textObj = (function(){
 				logSelectItem = $('<li>'),
 				logAnchor = $('<a>');
 
-
+			//assign the latest save text to the pre tag
 			pre.text(this.commitArray[this.commitArray.length-1]);
 
+			//set the list item's id to the current log number
 			listItem.attr('id',"Log_" + this.commitArray.length)
-				    .text("Log : " + this.commitArray.length)
+				    .text("Log : " + this.commitArray.length)//write the log number before appending the pre tag
 				    .append(pre);
 
+			//set anchor tag's href to #, set inner text to current log number
 			logAnchor.attr('href','#')
 					 .text("Log : " + this.commitArray.length);
 
+			//set log item's class to the current log number
 			logSelectItem.addClass("Log_" + this.commitArray.length)
 						 .append(logAnchor);
 
 
+			//append new list item and log item to appropriate UL elements
 			this.commitList.append(listItem);
 			this.logSelect.append(logSelectItem);
 		},
@@ -85,6 +95,8 @@ var textObj = (function(){
 			var commitArrayList = this.commitList,
 				logSelection = this.logSelect;
 
+			commitArrayList.html('');
+			logSelection.html('');
 			for(var i = 0; i < this.commitArray.length;i++)
 			{
 				var commitListItem = $('<li>'),
@@ -117,6 +129,10 @@ var textObj = (function(){
 			this.resetCounter = 1;
 				//clear the interval - stop the timer
 			clearInterval(this.resetTimer);
+				//clear the interval for the save status - stop the timer
+			clearInterval(this.saveStatus);
+				//set save state text to 'typing'
+			this.saveStateField.text('typing');
 				//re-set the interval function - reset the timer
 			this.resetTimer = setInterval(function(){
 				//decrement the timer by 1
@@ -128,6 +144,11 @@ var textObj = (function(){
 					clearInterval(textObj.resetTimer);
 					//commit the current text value of the textField to the logs
 					textObj.commitToArray();
+					//set save state text to 'saved'
+					textObj.saveStateField.text('saved');
+
+					//set interval where a few seconds of inactivity causes save state text to turn 'inactive'
+					textObj.saveStatus = setInterval(function(){textObj.saveStateField.text('inactive'); clearInterval(textObj.saveStatus)},840);
 				}
 			},this.resetLimit);
 		}
@@ -148,7 +169,7 @@ textObj.commitButton.click(function(){textObj.commitToArray();clearInterval(text
 //be reset with click handlers
 textObj.logSelect.on("click","li", logClickEvent);
 
-$('#clearTextBox').click(function(){textObj.textField.val(''); clearInterval(textObj.resetTimer);});
+textObj.clearText.click(function(){textObj.textField.val(''); clearInterval(textObj.resetTimer);});
 
 /************************
 TEXT COMMIT - FUNCTIONS
@@ -188,6 +209,30 @@ function logClickEvent(event)
 	});
 }
 
+function enableTab(id) {
+    var el = document.getElementById(id);
+    el.onkeydown = function(e) {
+        if (e.keyCode === 9) { // tab was pressed
+
+            // get caret position/selection
+            var val = this.value,
+                start = this.selectionStart,
+                end = this.selectionEnd;
+
+            // set textarea value to: text before caret + tab + text after caret
+            this.value = val.substring(0, start) + '\t' + val.substring(end);
+
+            // put caret at right position again
+            this.selectionStart = this.selectionEnd = start + 1;
+
+            // prevent the focus lose
+            return false;
+
+        }
+    };
+}
+
+enableTab('testTextField');
 /**************************/
 
 /***************************

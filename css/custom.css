@@ -57,6 +57,15 @@ MAIN PAGE: NAVIGATION MENUS
 	MAIN PAGE - MODALS - TEXTFIELD COMMIT
 *********************************/
 
+#testTextField
+{
+	border:none;
+	resize:none;
+	box-shadow:none;
+	min-height:200px;
+	background-color:rgba(0,0,0,.04);
+}
+
 #commitArrayList,#logSelection
 {
 	overflow-y:scroll;
@@ -107,6 +116,11 @@ MAIN PAGE: NAVIGATION MENUS
 	text-decoration:underline;
 	display:block;
 	padding:7px 0;
+}
+
+.catchText
+{
+	margin-bottom:10px;
 }
 /************************
 MAIN CONTENT - PURCHASE FORM

@@ -1,0 +1,14 @@
+[
+	{
+		"name":"John Johnson",
+		"shortname":"Johnny Boy",
+		"reknown":"cake vender",
+		"bio":"he did stuff"
+	},
+	{
+		"name":"Jack Jackson",
+		"shortname":"Jacky Boy",
+		"reknown":"cake eater",
+		"bio":"He did other stuff"
+	}
+]

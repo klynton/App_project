@@ -1,0 +1,14 @@
+<speakers>
+	<speaker>
+		<name>John Johnson</name>
+		<shortname>Johnny Boy</shortname>
+		<reknown>cake vender</reknown>
+		<bio>he did stuff</bio>
+	</speaker>
+	<speaker>
+		<name>Jack Jackson</name>
+		<shortname>Jacky Boy</shortname>
+		<reknown>cake eater</reknown>
+		<bio>He did other stuff</bio>
+	</speaker>
+</speakers>
