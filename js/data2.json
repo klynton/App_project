@@ -1,0 +1,38 @@
+[
+	{
+		"name":"John Johnson",
+		"shortname":"Johnny Boy",
+		"reknown":"cake vender",
+		"bio":"he did stuff"
+	},
+	{
+		"name":"Jack Jackson",
+		"shortname":"Jacky Boy",
+		"reknown":"cake eater",
+		"bio":"He did other stuff"
+	},
+	{
+		"name":"Jimmy Jimmson",
+		"shortname":"Jimmy Boy",
+		"reknown":"cake slinger",
+		"bio":"he did nuff stuff"
+	},
+	{
+		"name":"Jane Janeson",
+		"shortname":"Janey Girl",
+		"reknown":"cake f@#$er",
+		"bio":"She did not do the stuff"
+	},
+	{
+		"name":"Jerry Jerrison",
+		"shortname":"Jerri Boy",
+		"reknown":"cake slasher",
+		"bio":"he did the funky stuff"
+	},
+	{
+		"name":"Justin Justinson",
+		"shortname":"Justi Boy",
+		"reknown":"cake baker",
+		"bio":"He did all the stuff"
+	}
+]
