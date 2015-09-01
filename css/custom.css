@@ -75,8 +75,8 @@ MAIN PAGE: NAVIGATION MENUS
 	padding:5px;
 	border:2px solid rgba(0,0,0,0.3);
 	min-height:80px;
+	border-radius:5px;
 }
-
 
 #logSelection li a 
 {
@@ -89,11 +89,10 @@ MAIN PAGE: NAVIGATION MENUS
 	background-color:lightblue;
 }
 
-
-
 #commitArrayList 
 {
 	border:2px solid rgba(0,0,0,0.3);
+	border-radius:5px;
 	min-height:80px;
 }
 
