@@ -62,6 +62,7 @@ var textObj = (function(){
 				logSelectItem = $('<li>'),
 				logAnchor = $('<a>');
 
+
 			pre.text(this.commitArray[this.commitArray.length-1]);
 
 			listItem.attr('id',"Log_" + this.commitArray.length)

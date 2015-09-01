@@ -57,22 +57,44 @@ MAIN PAGE: NAVIGATION MENUS
 	MAIN PAGE - MODALS - TEXTFIELD COMMIT
 *********************************/
 
-#testTextField
-{
-	margin-bottom:10px;
-}
-
 #commitArrayList,#logSelection
 {
 	overflow-y:scroll;
 	max-height:200px;
 }
 
-#commitArrayList ul, #logSelection ul
+#commitArrayList, #logSelection
 {
 	padding:0;
 	margin:0;
 	list-style:none;
+}
+
+#logSelection
+{
+	padding:5px;
+	border:2px solid rgba(0,0,0,0.3);
+	min-height:80px;
+}
+
+
+#logSelection li a 
+{
+	display:block;
+	padding:10px 0;
+}
+
+#logSelection li a:hover
+{
+	background-color:lightblue;
+}
+
+
+
+#commitArrayList 
+{
+	border:2px solid rgba(0,0,0,0.3);
+	min-height:80px;
 }
 
 #commitArrayList li
@@ -81,12 +103,12 @@ MAIN PAGE: NAVIGATION MENUS
 	border-bottom:1px solid #ddd;
 }
 
-#commitArrayList li.highlight
+#clearTextBox
 {
-	background-color:lightblue;
-	border: 1px solid #000;
+	text-decoration:underline;
+	display:block;
+	padding:7px 0;
 }
-
 /************************
 MAIN CONTENT - PURCHASE FORM
 *************************/
