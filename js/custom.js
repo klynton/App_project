@@ -1,7 +1,6 @@
 /****************************
 	TEXT COMMIT OBJECT
 ******************************/
-
 var textObj = (function(){
 	return {
 
