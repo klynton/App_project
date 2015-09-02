@@ -85,3 +85,23 @@ $('#search').keyup(function(){
 });
 
 $('#enclosedAjaxEnviroment').hide();
+
+function loadAjaxSave()
+{
+	var commitXHR = new XMLHttpRequest();
+
+	commitXHR.open('GET','js/dataCommit.json');
+
+	commitXHR.onreadystatechange = function()
+	{
+		if(commitXHR.status === 200 && commitXHR.readyState === 4)
+		{
+			var obj = JSON.parse(commitXHR.responseText);
+			textObj.commitArray = obj;
+			textObj.updateFullArray();
+		}
+	}
+
+	commitXHR.send();
+}
+$('#loadAjaxSave').click(loadAjaxSave);
