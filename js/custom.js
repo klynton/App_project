@@ -29,8 +29,12 @@ var textObj = (function(){
 		{
 			if(this.textField.val().trim() !== "")
 			{
+				var newLog = {
+					"log":"Log_" + (this.commitArray.length + 1),
+					"content":this.textField.val()
+				};
 				//push latest textfield value to end of array
-					this.commitArray.push(this.textField.val());
+					this.commitArray.push(newLog);
 
 				// 	//set backlog limit
 					if(this.commitArray.length > 100)
@@ -65,22 +69,24 @@ var textObj = (function(){
 			var listItem = $('<li>'),
 				pre = $('<pre>'),
 				logSelectItem = $('<li>'),
-				logAnchor = $('<a>');
+				logAnchor = $('<a>'),
+				log = this.commitArray[this.commitArray.length-1].log,
+				content = this.commitArray[this.commitArray.length-1].content;
 
 			//assign the latest save text to the pre tag
-			pre.text(this.commitArray[this.commitArray.length-1]);
+			pre.text(content);
 
 			//set the list item's id to the current log number
-			listItem.attr('id',"Log_" + this.commitArray.length)
-				    .text("Log : " + this.commitArray.length)//write the log number before appending the pre tag
+			listItem.attr('id',log)
+				    .text(log)//write the log number before appending the pre tag
 				    .append(pre);
 
 			//set anchor tag's href to #, set inner text to current log number
 			logAnchor.attr('href','#')
-					 .text("Log : " + this.commitArray.length);
+					 .text(log);
 
 			//set log item's class to the current log number
-			logSelectItem.addClass("Log_" + this.commitArray.length)
+			logSelectItem.addClass(log)
 						 .append(logAnchor);
 
 
@@ -93,6 +99,7 @@ var textObj = (function(){
 		{
 			var commitArrayList = this.commitList,
 				logSelection = this.logSelect;
+				
 
 			commitArrayList.html('');
 			logSelection.html('');
@@ -101,18 +108,20 @@ var textObj = (function(){
 				var commitListItem = $('<li>'),
 					pre = $('<pre>'),
 					logSelectItem = $('<li>'),
-					logAnchor = $('<a>');
+					logAnchor = $('<a>'),
+					log = this.commitArray[i].log,
+					content = this.commitArray[i].content;
 
-				pre.text(this.commitArray[i]);
+				pre.text(content);
 
-				commitListItem.attr('id',"Log_" + (i+1))
+				commitListItem.attr('id',log)
 							  .text("Log: " + (i+1))
 							  .append(pre);
 
 				logAnchor.attr('href','#')
-						 .text("Log : " + (i+1));
+						 .text(log);
 
-				logSelectItem.addClass('Log_' + (i+1))
+				logSelectItem.addClass(log)
 							.append(logAnchor);
 
 				commitArrayList.append(commitListItem);
@@ -168,8 +177,9 @@ textObj.commitButton.click(function(){textObj.commitToArray();clearInterval(text
 //be reset with click handlers
 textObj.logSelect.on("click","li", logClickEvent);
 
-textObj.clearText.click(function(){textObj.textField.val(''); clearInterval(textObj.resetTimer);});
+textObj.clearText.click(function(e){e.preventDefault();textObj.textField.val('');clearInterval(textObj.resetTimer);});
 
+$('#loadAjaxSave').click();
 /************************
 TEXT COMMIT - FUNCTIONS
 *************************/
@@ -191,10 +201,6 @@ function logClickEvent(event)
 	var value = $(this).attr('class'),//cache the class name only
 		correspondingCommitLog = $("#" + value).children('pre');//cache jQuery object with the id 
 												//equal to the link's class name
-
-	//set the latestEntry to the commit list with corresponding 
-	//id to the clicked link's class
-	textObj.latestEntry.text(correspondingCommitLog.text());
 
 	//update textfield's text to the value of the selected log
 	textObj.textField.val(correspondingCommitLog.text());

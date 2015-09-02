@@ -1,0 +1,14 @@
+[
+	{
+		"log":"Log_1",
+		"content":"stuff"
+	},
+	{
+		"log":"Log_2",
+		"content":"other stuff"
+	},
+	{
+		"log":"Log_3",
+		"content":"final stuff"
+	}
+]
