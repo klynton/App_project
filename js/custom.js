@@ -34,6 +34,35 @@ var textObj = (function(){
 
 		clearText:$('#clearTextBox'),
 
+		restrictedTextKeys:[
+
+			20,
+			17,
+			27,
+			112,
+			113,
+			114,
+			115,
+			116,
+			117,
+			118,
+			119,
+			120,
+			121,
+			122,
+			123,
+			91,
+			18,
+			36,
+			33,
+			34,
+			37,
+			38,
+			39,
+			40
+
+		],
+
 		/***********************
 		METHODS
 		************************/
@@ -169,8 +198,9 @@ var textObj = (function(){
 			}
 		},
 
-		savingTimer:function()
+		savingTimer:function(e)
 		{
+	
 			this.resetLimit = parseInt($('#timerSelect').val()) * 1000;
 
 
@@ -203,7 +233,6 @@ var textObj = (function(){
 				if(textObj.resetCounter === 0)
 				{	
 
-
 					//stop the timer, 
 					clearInterval(textObj.resetTimer);
 
@@ -229,7 +258,7 @@ var textObj = (function(){
 			/***********************
 				TEXT COMMIT - EVENT HANDLERS
 			*********************/
-			this.textField.keydown(function(){textObj.savingTimer();});
+			$(document).on('input',this.textField,function(){textObj.savingTimer();});
 
 			this.loadButton.click(loadCommitedTextField);
 
@@ -397,6 +426,10 @@ $('#purchaseForm').submit(purchaseForm.submitHandler);
 
 /************************/
 
+/**********************
+GENERAL PAGE FUNCTIONS
+*********************/
+
 $(document).click(function(e){
 	if( regulateNavMenuNotSelected(e) )
 	{
@@ -422,3 +455,13 @@ function regulateNavMenuNotSelected(e)
 			containers.has(e.target).length === 0 &&
 			containers.hasClass('active') );
 }
+
+function isSpecificKey(arrayToCheck,comparisonKey)
+{
+	for(var i = 0; i < arrayToCheck.length;i++)
+	{
+		if(arrayToCheck[i] === comparisonKey) return true;
+	}
+}
+
+/****************************************/

@@ -105,57 +105,67 @@
 		<input type='text' id='byteSize' placeholder='byteSize' disabled>
 		<!---->
 
-		<!--input save state-->
-		<div id='saveState' class='pull-right'>Save State</div>
+		<div id='commitContainer' class='row'>
 
-		<form accept-charset='utf-8'><!--accept special characters-->
+			<!--input save state-->
+			<div id='saveState' class='pull-right'>Save State</div>
 
-			<textarea class='form-control' rows='3'  width='400' height='400' id='testTextField' placeholder='Type here'></textarea>
+			<form accept-charset='utf-8'><!--accept special characters-->
 
-			<a href='#' id='clearTextBox'>Clear Text</a><!--clear textarea-->
+				<textarea class='form-control' rows='3'  width='400' height='400' id='testTextField' placeholder='Type here'></textarea>
 
-		</form>
+				<a href='#' id='clearTextBox'>Clear Text</a><!--clear textarea-->
 
-		<div class='row'>
+			</form>
 
-			<div class='catchText col-sm-5'>
+			<div class='row'>
 
-				<ul id='logSelection'></ul><!--log hyperlinks will go here-->
+				<div class='catchText col-sm-5'>
+
+					<ul id='logSelection'></ul><!--log hyperlinks will go here-->
+
+				</div>
+
+				<div class='col-sm-7'>
+
+					<ul id='commitArrayList'></ul><!--text logs will go here-->
+
+				</div>
+
+			</div><!--end of row-->
+
+			<button id='commitArrayLoad' class='btn btn-success'>Load</button>
+
+			<button id='commitArraySave' class='btn btn-info'>Commit</button>
+
+			<button id='loadAjaxSave' class='btn btn-warning'>Ajax</button>
+
+			<!--developer only, will be removed-->
+			<div id='enclosedAjaxEnviroment'>
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				<button id='loadAjax'>Load Ajax</button>
+				<div id='searchArea'>
+					<label for='search'>Live Search</label>
+					<input type='search' name='search' id='search' placeholder='name or info' />
+					<div id='searchDump'></div>
+				</div>
+			</div>
+			<!---->
+
+			<div id='textCommitSideMenu'>
+
+				
 
 			</div>
 
-			<div class='col-sm-7'>
-
-				<ul id='commitArrayList'></ul><!--text logs will go here-->
-
-			</div>
-
-		</div><!--end of row-->
-
-		<button id='commitArrayLoad' class='btn btn-success'>Load</button>
-
-		<button id='commitArraySave' class='btn btn-info'>Commit</button>
-
-		<button id='loadAjaxSave' class='btn btn-warning'>Ajax</button>
-
-		<!--developer only, will be removed-->
-		<div id='enclosedAjaxEnviroment'>
-			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
-			<button id='loadAjax'>Load Ajax</button>
-			<div id='searchArea'>
-				<label for='search'>Live Search</label>
-				<input type='search' name='search' id='search' placeholder='name or info' />
-				<div id='searchDump'></div>
-			</div>
-		</div>
-		<!---->
+		</div><!--end of text commit container -->
 
 	</div><!--end of container-->
 
