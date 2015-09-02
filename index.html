@@ -1,33 +1,44 @@
+<!--Main Index-->
 <!DOCTYPE html>
+
 <html lang='en'>
 
 	<head>
+
 		<title>Branch App Project Ver. 7.3</title>
+
 		<meta charset='utf-8'>
+
 		<meta name='viewport' content='width=device-width,initial-scale=1.0'>
+
+
 		<!--BOOTSTRAP -->
 		<link href='css/bootstrap.min.css' rel='stylesheet'>
+
 
 		<!--CUSTOM CSS-->
 		<link href='css/custom.css' rel='stylesheet' type='text/css'>
 
+		<!--RESPOND.js-->
 		<script src='js/respond.min.js'></script>
+
 
 		<!--sizeof.js file -->
 		<script src='js/sizeof.compressed.js'></script>
-		
+	
 	</head>
 
 	<body>
 
+	<!--MAIN CONTAINER-->
 	<div class='container'>
 
 		<!--MAIN NAVBAR-->
-
 		<div class='navbar navbar-inverse' id='indexPageNavbar' role='navigation'>
 			
 			<div class='navbar-header'>
 
+				<!--COLLAPSE BUTTON-->
 				<button type='button' data-target='#navbarCollapse' data-toggle='collapse' class='navbar-toggle'>
 
 					<span class='sr-only'>Toggle Navigation</span>
@@ -38,28 +49,44 @@
 				</button>
 
 			</div>
+
+			<!--NAVBAR COLLAPSABLE LIST-->
 			<div class='collapse navbar-collapse' id='navbarCollapse'>
+
 				<ul class='nav navbar-nav'>
+
 					<li>
+
 						<a href="#" class='slideOutToggle'>
 							First
 							<span class='caret'></span>
 						</a>
+
 						<ul class='slideOutMenu'>
+
 							<li>
+
 								<a href="#" data-toggle='modal' data-target='#textFieldCommitModal' id='textFieldCommit'>TextField Commit</a>
+
 							</li>
+
 							<li>
+
 								<a href="#" data-toggle='modal' data-target='#purchaseForm_1' id='#purchaseFormOliveOil'>Purchase Form</a>
+
 							</li>
+
 						</ul>
+
 					</li>
+
 				</ul>
 
-			</div>
+			</div><!--END OF COLLAPSE LIST-->
 
 		</div><!--end of navbar-->
 
+		<!--DEVELOPER ONLY - SOON TO BE REMOVED-->
 		<div id='timerSetting'>
 			<label for='timerSelect'>Saving intervals in seconds</label>
 			<select id='timerSelect'>
@@ -76,25 +103,42 @@
 			</select>
 		</div>
 		<input type='text' id='byteSize' placeholder='byteSize' disabled>
+		<!---->
+
+		<!--input save state-->
 		<div id='saveState' class='pull-right'>Save State</div>
-		<form accept-charset='utf-8'>
+
+		<form accept-charset='utf-8'><!--accept special characters-->
+
 			<textarea class='form-control' rows='3'  width='400' height='400' id='testTextField' placeholder='Type here'></textarea>
-			<a href='#' id='clearTextBox'>Clear Text</a>
+
+			<a href='#' id='clearTextBox'>Clear Text</a><!--clear textarea-->
+
 		</form>
+
 		<div class='row'>
+
 			<div class='catchText col-sm-5'>
-				<ul id='logSelection'></ul>
-			</div>
-			<div class='col-sm-7'>
-				<ul id='commitArrayList'></ul>
+
+				<ul id='logSelection'></ul><!--log hyperlinks will go here-->
+
 			</div>
 
-		</div>
+			<div class='col-sm-7'>
+
+				<ul id='commitArrayList'></ul><!--text logs will go here-->
+
+			</div>
+
+		</div><!--end of row-->
 
 		<button id='commitArrayLoad' class='btn btn-success'>Load</button>
+
 		<button id='commitArraySave' class='btn btn-info'>Commit</button>
+
 		<button id='loadAjaxSave' class='btn btn-warning'>Ajax</button>
 
+		<!--developer only, will be removed-->
 		<div id='enclosedAjaxEnviroment'>
 			<ul>
 				<li></li>
@@ -111,6 +155,7 @@
 				<div id='searchDump'></div>
 			</div>
 		</div>
+		<!---->
 
 	</div><!--end of container-->
 
@@ -264,6 +309,7 @@
 	<!--BOOTSTRAP JS CDN 
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	-->
+
 	<!--BOOTSTRAP LOCAL FILE -->
 		<script src='js/bootstrap.min.js'></script>
 
