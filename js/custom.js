@@ -420,7 +420,7 @@ $('.slideOutMenu a').click(function(event){
 
 function regulateNavMenuNotSelected(e)
 {
-	var containers = $('.slideOutMenu,.slideOutToggle,#commitSignUp,#commitLogin');
+	var containers = $('.slideOutMenu,.slideOutToggle');
 	return( !containers.is(e.target) && 
 			containers.has(e.target).length === 0 &&
 			containers.hasClass('active') );
@@ -432,51 +432,5 @@ function toggleDismissed(elementID)
 	$elementJQ.toggleClass('dismissed');
 }
 
-$('#callCommitContainer').click(function(){
-	toggleDismissed('#commitContainer');
-});
-
-$('#callSignUp').click(function(){
-	toggleDismissed('#commitSignUp');
-});
-
-$('#callLogin').click(function(){
-	toggleDismissed('#commitLogin');
-});
-
-
-function isSpecificKey(arrayToCheck,comparisonKey)
-{
-	for(var i = 0; i < arrayToCheck.length;i++)
-	{
-		if(arrayToCheck[i] === comparisonKey) return true;
-	}
-}
-
-$('#enclosedAjaxEnviroment, #tooltip_container').hide();
-
-
-$(document).ready(function(){
-	$
-	$('.custom_tooltip').mouseover(function(e){
-
-		if( $(this).attr('data-tip-type') == 'text' ){
-			$('#tooltip_container').html( $(this).attr('data-tip-source') );
-
-		}
-
-		if( $(this).attr('data-tip-type') == 'html' ){
-			var elementToGet = "#" + $(this).attr("data-tip-source");
-			var newHTML = $(elementToGet).html();
-			$('#tooltip_container').html( newHTML );
-
-		}
-
-	}).mousemove(function(e){
-
-	}).mouseout(function(e){
-
-	});
-})
 
 /****************************************/
