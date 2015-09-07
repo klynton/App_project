@@ -105,7 +105,12 @@
 		<input type='text' id='byteSize' placeholder='byteSize' disabled>
 		<!---->
 
-		<div id='commitContainer' class='row'>
+		<button id='callCommitContainer'>Text Commit</button>
+		<button id='callSignUp'>SignUp</button>
+		<button id='callLogin'>Login</button>
+
+		<!--Text Commit -->
+		<div id='commitContainer' class='row dismissed'>
 
 			<!--input save state-->
 			<div id='saveState' class='pull-right'>Save State</div>
@@ -115,6 +120,9 @@
 				<textarea class='form-control' rows='3'  width='400' height='400' id='testTextField' placeholder='Type here'></textarea>
 
 				<a href='#' id='clearTextBox'>Clear Text</a><!--clear textarea-->
+
+				<a href="#" data-tip-type='text' data-tip-source='This is text for a tooltip' class='custom_tooltip'>Clickity</a>
+				<a href="#" data-tip-type='html' data-tip-source='tooltip-sidebar' class='custom_tooltip'>Html-based tool tip</a>
 
 			</form>
 
@@ -159,21 +167,49 @@
 			</div>
 			<!---->
 
-			<div id='textCommitUI'>
-
-				<button class='menuButton'>menu</button>
-
-				<div id='textCommitMenu'>
-					<ul class='textCommitMenuNav'>
-						<li>
-							<a href="#"></a>
-						</li>
-					</ul>	
-				</div>
-
-			</div>
-
 		</div><!--end of text commit container -->
+
+		<div id='commitSignUp' class='commitFormMenu dismissed'>
+
+			<div id='signUpTitle'>Sign Up Form:</div>
+
+			<form>
+
+				<label for='signUpUser'>User Name</label>
+				<input type='text' id='signUpUser' placeholder='Enter User name'>
+
+				<label for='signUpEmail'>Email</label>
+				<input type='email' id='signUpEmail' placeholder='Enter Email'>
+
+				<label for='signUpPassword'>Password</label>
+				<input type='password' id='signUpPassword' placeholder='Enter password'>
+
+				<input type='submit' id='signUpSubmit' placeholder='Submit'>
+
+			</form>
+
+		</div>
+
+		<div class='commitFormMenu dismissed' id='commitLogin'>
+
+			<div id='loginTitle'>Login Form</div>
+
+			<form>
+
+				<label for='loginUser'>User Name</label>
+				<input type='text' id='loginUser' placeholder='Enter User name'>
+
+				<label for='loginEmail'>Email</label>
+				<input type='email' id='loginEmail' placeholder='Enter Email'>
+
+				<label for='loginPassword'>Password</label>
+				<input type='password' id='loginPassword' placeholder='Enter password'>
+
+				<input type='submit' id='loginSubmit' placeholder='Submit'>
+
+			</form>
+
+		</div>
 
 	</div><!--end of container-->
 
@@ -318,6 +354,15 @@
 
 	</div><!--end of modal-->
 
+	<div id='tooltip_container'>this is my tooltip</div>
+	<div class='tooltip-html-source'>
+		<div id="tooltip-sidebar">
+			<div class='red_circle' style='float:left;'></div>
+			This is a tip that has<strong><em style='color: #ffe19a;"'>HTML-formatted</em></strong>
+			content including a red circle.
+			<div class='clear-all'></div>
+		</div>
+	</div>
 	<!--javascript-->
 		<!--jQuery CDN
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>

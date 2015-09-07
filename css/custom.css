@@ -57,6 +57,20 @@ MAIN PAGE: NAVIGATION MENUS
 	MAIN PAGE - MODALS - TEXTFIELD COMMIT
 *********************************/
 
+#commitContainer
+{
+	position:absolute;
+	width:90%;
+	transition:visibility 0.55s ease 0s, opacity 0.55s ease 0s
+}
+
+#commitContainer.dismissed
+{
+	opacity:0;
+	visibility:hidden;
+	transition:visibility 0.55s ease 0s, opacity 0.55s ease 0s;
+}
+
 #testTextField
 {
 	border:none;
@@ -122,6 +136,37 @@ MAIN PAGE: NAVIGATION MENUS
 {
 	margin-bottom:10px;
 }
+
+.commitFormMenu 
+{
+	box-shadow:0px 9px 21px 1px rgba(0,0,0,.5);
+	border:1px solid #bbb;
+	width:60%;
+	left:50%;
+	visibility:visible;
+	opacity:1;
+	padding:20px;
+	border-radius:8px;
+	position:absolute;
+	transform:translate(-50%,0);
+	transition:visibility 0.55s ease 0s, opacity 0.55s ease 0s,left 0.65s ease 0s;
+}
+
+.commitFormMenu.dismissed
+{
+	visibility:hidden;
+	opacity:0;
+	left:70%;
+}
+
+ .commitFormMenu input
+{
+	display:block;
+	margin-bottom:10px;
+	font-size:1.3em;
+	padding:10px;
+	border-radius:6px;
+}
 /************************
 MAIN CONTENT - PURCHASE FORM
 *************************/
@@ -142,4 +187,38 @@ DEV TOOLS
 #byteSize
 {
 	margin-bottom:10px;
+}
+
+#tooltip_container
+{
+	color:#fff;
+	position:absolute;
+	padding:20px;
+	max-width:200px;
+	background-color:rgba(0,0,0,0.85);
+	border-radius:12px;
+}
+
+.tooltip-html-source
+{
+	display:none;
+}
+
+.red_circle
+{
+	width:10px;
+	height:10px;
+	background-color:red;
+	border-radius:100%;
+}
+
+.clear-all:before,.clear-all:after
+{
+	display:table;
+	content:" ";
+}
+
+.clear-all:after
+{
+	clear:both;
 }
