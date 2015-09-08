@@ -1,33 +1,44 @@
+<!--Main Index-->
 <!DOCTYPE html>
+
 <html lang='en'>
 
 	<head>
-		<title>Branch App Project Ver. 7.3</title>
+
+		<title>Branch App Project Ver. 8</title>
+
 		<meta charset='utf-8'>
+
 		<meta name='viewport' content='width=device-width,initial-scale=1.0'>
+
+
 		<!--BOOTSTRAP -->
 		<link href='css/bootstrap.min.css' rel='stylesheet'>
+
 
 		<!--CUSTOM CSS-->
 		<link href='css/custom.css' rel='stylesheet' type='text/css'>
 
+		<!--RESPOND.js-->
 		<script src='js/respond.min.js'></script>
+
 
 		<!--sizeof.js file -->
 		<script src='js/sizeof.compressed.js'></script>
-		
+	
 	</head>
 
 	<body>
 
+	<!--MAIN CONTAINER-->
 	<div class='container'>
 
 		<!--MAIN NAVBAR-->
-
 		<div class='navbar navbar-inverse' id='indexPageNavbar' role='navigation'>
 			
 			<div class='navbar-header'>
 
+				<!--COLLAPSE BUTTON-->
 				<button type='button' data-target='#navbarCollapse' data-toggle='collapse' class='navbar-toggle'>
 
 					<span class='sr-only'>Toggle Navigation</span>
@@ -38,141 +49,44 @@
 				</button>
 
 			</div>
+
+			<!--NAVBAR COLLAPSABLE LIST-->
 			<div class='collapse navbar-collapse' id='navbarCollapse'>
+
 				<ul class='nav navbar-nav'>
+
 					<li>
+
 						<a href="#" class='slideOutToggle'>
 							First
 							<span class='caret'></span>
 						</a>
+
 						<ul class='slideOutMenu'>
+
 							<li>
-								<a href="#" data-toggle='modal' data-target='#textFieldCommitModal' id='textFieldCommit'>TextField Commit</a>
+
+								<a href="signUpForm.html">TextField Commit</a>
+
 							</li>
+
 							<li>
+
 								<a href="#" data-toggle='modal' data-target='#purchaseForm_1' id='#purchaseFormOliveOil'>Purchase Form</a>
+
 							</li>
+
 						</ul>
+
 					</li>
+
 				</ul>
 
-			</div>
+			</div><!--END OF COLLAPSE LIST-->
 
 		</div><!--end of navbar-->
 
-		<div id='timerSetting'>
-			<label for='timerSelect'>Saving intervals in seconds</label>
-			<select id='timerSelect'>
-				<option id='seconds_1' value='1'>1</option>
-				<option id='seconds_2' value='2'>2</option>
-				<option id='seconds_3' value='3'>3</option>
-				<option id='seconds_4' value='4'>4</option>
-				<option id='seconds_5' value='5'>5</option>
-				<option id='seconds_6' value='6'>6</option>
-				<option id='seconds_7' value='7'>7</option>
-				<option id='seconds_8' value='8'>8</option>
-				<option id='seconds_9' value='9'>9</option>
-				<option id='seconds_10' value='10'>10</option>
-			</select>
-		</div>
-		<input type='text' id='byteSize' placeholder='byteSize' disabled>
-		<div id='saveState' class='pull-right'>Save State</div>
-		<form accept-charset='utf-8'>
-			<textarea class='form-control' rows='3'  width='400' height='400' id='testTextField' placeholder='Type here'></textarea>
-			<a href='#' id='clearTextBox'>Clear Text</a>
-		</form>
-		<div class='row'>
-			<div class='catchText col-sm-5'>
-				<ul id='logSelection'></ul>
-			</div>
-			<div class='col-sm-7'>
-				<ul id='commitArrayList'></ul>
-			</div>
-
-		</div>
-
-		<button id='commitArrayLoad' class='btn btn-success'>Load</button>
-		<button id='commitArraySave' class='btn btn-info'>Commit</button>
-		<button id='loadAjaxSave' class='btn btn-warning'>Ajax</button>
-
-		<div id='enclosedAjaxEnviroment'>
-			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
-			<button id='loadAjax'>Load Ajax</button>
-			<div id='searchArea'>
-				<label for='search'>Live Search</label>
-				<input type='search' name='search' id='search' placeholder='name or info' />
-				<div id='searchDump'></div>
-			</div>
-		</div>
-
-	</div><!--end of container-->
-
-	<!--Modal for Text Field Commit-->
-	<div class='modal fade' id='textFieldCommitModal' tabindex='-1' role='dialog'>
-
-		<div class='modal-dialog' role='document'>
-
-			<div class='modal-content'>
-
-				<div class='modal-header'>
-					<button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-					<span aria-hidden='true'>&times;</span>
-					</button>
-					<h4 class='modal-title'>Live-Saving Commit</h4>
-				</div>
-
-				<div class='modal-body'>
-
-					<!-- <div id='timerSetting'>
-						<label for='timerSelect'>Saving intervals in seconds</label>
-						<select id='timerSelect'>
-							<option id='seconds_1' value='1'>1</option>
-							<option id='seconds_2' value='2'>2</option>
-							<option id='seconds_3' value='3'>3</option>
-							<option id='seconds_4' value='4'>4</option>
-							<option id='seconds_5' value='5'>5</option>
-							<option id='seconds_6' value='6'>6</option>
-							<option id='seconds_7' value='7'>7</option>
-							<option id='seconds_8' value='8'>8</option>
-							<option id='seconds_9' value='9'>9</option>
-							<option id='seconds_10' value='10'>10</option>
-						</select>
-					</div>
-					<input type='text' id='byteSize' placeholder='byteSize' disabled>
-					<form accept-charset='utf-8'>
-						<textarea class='form-control' rows='3'  width='400' height='400' id='testTextField' placeholder='Type here'></textarea>
-						<a href='#' id='clearTextBox'>Clear Text</a>
-					</form>
-					<div class='row'>
-						<div class='catchText col-sm-5'>
-							<ul id='logSelection'></ul>
-						</div>
-						<div class='col-sm-7'>
-							<ul id='commitArrayList'></ul>
-						</div>
-
-					</div> -->
-					
-				</div>
-
-				<div class='modal-footer'>
-					<!-- <button id='commitArrayLoad' class='btn btn-success'>Load</button>
-					<button id='commitArraySave' class='btn btn-info'>Commit</button> -->
-				</div>	
-
-			</div>
-
-		</div>
-
-
-	</div><!--end of Modal-->
+	</div><!--end of main container-->
 
 	<!--modal for purchase form #1-->
 	<div class='modal fade' id='purchaseForm_1' tabindex='-1' role='dialog'>
@@ -264,6 +178,7 @@
 	<!--BOOTSTRAP JS CDN 
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	-->
+
 	<!--BOOTSTRAP LOCAL FILE -->
 		<script src='js/bootstrap.min.js'></script>
 

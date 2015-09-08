@@ -1,0 +1,79 @@
+<!--Main Index-->
+<!DOCTYPE html>
+
+<html lang='en'>
+
+	<head>
+
+		<title>Branch App Project Ver. 7.3</title>
+
+		<meta charset='utf-8'>
+
+		<meta name='viewport' content='width=device-width,initial-scale=1.0'>
+
+
+		<!--BOOTSTRAP -->
+		<link href='css/bootstrap.min.css' rel='stylesheet'>
+
+
+		<!--CUSTOM CSS-->
+		<link href='css/custom.css' rel='stylesheet' type='text/css'>
+
+		<!--RESPOND.js-->
+		<script src='js/respond.min.js'></script>
+
+
+		<!--sizeof.js file -->
+		<script src='js/sizeof.compressed.js'></script>
+	
+	</head>
+
+	<body>
+
+	<!--MAIN CONTAINER-->
+	<div class='container'>
+
+		<div id='commitSignUp' class='commitFormMenu'>
+		<a href="loginForm.html" class='pull-right'>already have an account? Log in</a>
+
+			<div id='signUpTitle'>Sign Up Form:</div>
+
+			<form action='commitApp.html' id='signUpForm'>
+
+				<label for='signUpUser'>User Name</label>
+				<input type='text' id='signUpUser' placeholder='Enter User name'>
+
+				<label for='signUpEmail'>Email</label>
+				<input type='email' id='signUpEmail' placeholder='Enter Email'>
+
+				<label for='signUpPassword'>Password</label>
+				<input type='password' id='signUpPassword' placeholder='Enter password'>
+
+				<input type='submit' id='signUpSubmit' placeholder='Submit'>
+
+			</form>
+
+			<div id='formErrors'></div><!--Any form errors will go here-->
+
+		</div>
+
+	</div><!--end of container-->
+	
+	<!--javascript-->
+		<!--jQuery CDN
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		-->
+		<script>window.jQuery || document.write('<script src="jquery-library/jquery.js"><\/script>');</script>
+
+	<!--BOOTSTRAP JS CDN 
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	-->
+
+	<!--BOOTSTRAP LOCAL FILE -->
+		<script src='js/bootstrap.min.js'></script>
+
+	<!--CUSTOM JS FILE-->
+		<script src='js/authentication.js'></script>		
+		
+	</body>
+</html>
