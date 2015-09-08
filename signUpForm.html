@@ -33,11 +33,12 @@
 	<!--MAIN CONTAINER-->
 	<div class='container'>
 
-		<div id='commitSignUp' class='commitFormMenu dismissed'>
+		<div id='commitSignUp' class='commitFormMenu'>
+		<a href="loginForm.html" class='pull-right'>already have an account? Log in</a>
 
 			<div id='signUpTitle'>Sign Up Form:</div>
 
-			<form>
+			<form action='commitApp.html' id='signUpForm'>
 
 				<label for='signUpUser'>User Name</label>
 				<input type='text' id='signUpUser' placeholder='Enter User name'>
@@ -51,6 +52,8 @@
 				<input type='submit' id='signUpSubmit' placeholder='Submit'>
 
 			</form>
+
+			<div id='formErrors'></div><!--Any form errors will go here-->
 
 		</div>
 
@@ -70,9 +73,7 @@
 		<script src='js/bootstrap.min.js'></script>
 
 	<!--CUSTOM JS FILE-->
-		<script src='js/custom.js'></script>
-
-		<script src='js/ajaxScript.js'></script>
+		<script src='js/authentication.js'></script>		
 		
 	</body>
 </html>

@@ -34,16 +34,14 @@
 	<div class='container'>
 
 		<div class='commitFormMenu dismissed' id='commitLogin'>
+			<a href="signUpForm.html" class='pull-right'>Sign up form</a>
 
 			<div id='loginTitle'>Login Form</div>
 
-			<form>
+			<form id='loginForm'>
 
 				<label for='loginUser'>User Name</label>
 				<input type='text' id='loginUser' placeholder='Enter User name'>
-
-				<label for='loginEmail'>Email</label>
-				<input type='email' id='loginEmail' placeholder='Enter Email'>
 
 				<label for='loginPassword'>Password</label>
 				<input type='password' id='loginPassword' placeholder='Enter password'>
@@ -52,10 +50,12 @@
 
 			</form>
 
+			<div id='formErrors'></div>
+
 		</div>
 
 	</div><!--end of container-->
-	
+
 	<!--javascript-->
 		<!--jQuery CDN
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -70,9 +70,8 @@
 		<script src='js/bootstrap.min.js'></script>
 
 	<!--CUSTOM JS FILE-->
-		<script src='js/custom.js'></script>
 
-		<script src='js/ajaxScript.js'></script>
+		<script src='js/authentication.js'></script>
 		
 	</body>
 </html>

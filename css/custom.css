@@ -57,20 +57,6 @@ MAIN PAGE: NAVIGATION MENUS
 	MAIN PAGE - MODALS - TEXTFIELD COMMIT
 *********************************/
 
-#commitContainer
-{
-	position:absolute;
-	width:90%;
-	transition:visibility 0.55s ease 0s, opacity 0.55s ease 0s
-}
-
-#commitContainer.dismissed
-{
-	opacity:0;
-	visibility:hidden;
-	transition:visibility 0.55s ease 0s, opacity 0.55s ease 0s;
-}
-
 #testTextField
 {
 	border:none;
@@ -150,13 +136,6 @@ MAIN PAGE: NAVIGATION MENUS
 	position:absolute;
 	transform:translate(-50%,0);
 	transition:visibility 0.55s ease 0s, opacity 0.55s ease 0s,left 0.65s ease 0s;
-}
-
-.commitFormMenu.dismissed
-{
-	visibility:hidden;
-	opacity:0;
-	left:70%;
 }
 
  .commitFormMenu input

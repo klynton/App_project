@@ -5,7 +5,7 @@
 
 	<head>
 
-		<title>Branch App Project Ver. 7.3</title>
+		<title>Branch App Project Ver. 8</title>
 
 		<meta charset='utf-8'>
 
@@ -66,7 +66,7 @@
 
 							<li>
 
-								<a href="#" data-toggle='modal' data-target='#textFieldCommitModal' id='textFieldCommit'>TextField Commit</a>
+								<a href="signUpForm.html">TextField Commit</a>
 
 							</li>
 
@@ -85,67 +85,6 @@
 			</div><!--END OF COLLAPSE LIST-->
 
 		</div><!--end of navbar-->
-
-		<!--DEVELOPER ONLY - SOON TO BE REMOVED-->
-		<div id='timerSetting'>
-			<label for='timerSelect'>Saving intervals in seconds</label>
-			<select id='timerSelect'>
-				<option id='seconds_1' value='1'>1</option>
-				<option id='seconds_2' value='2'>2</option>
-				<option id='seconds_3' value='3'>3</option>
-				<option id='seconds_4' value='4'>4</option>
-				<option id='seconds_5' value='5'>5</option>
-				<option id='seconds_6' value='6'>6</option>
-				<option id='seconds_7' value='7'>7</option>
-				<option id='seconds_8' value='8'>8</option>
-				<option id='seconds_9' value='9'>9</option>
-				<option id='seconds_10' value='10'>10</option>
-			</select>
-		</div>
-		<input type='text' id='byteSize' placeholder='byteSize' disabled>
-		<!---->
-
-		<button id='callCommitContainer'>Text Commit</button>
-		<button id='callSignUp'>SignUp</button>
-		<button id='callLogin'>Login</button>
-
-		<!--Text Commit -->
-		<div id='commitContainer' class='row'>
-
-			<!--input save state-->
-			<div id='saveState' class='pull-right'>Save State</div>
-
-			<form accept-charset='utf-8'><!--accept special characters-->
-
-				<textarea class='form-control' rows='3'  width='400' height='400' id='testTextField' placeholder='Type here'></textarea>
-
-				<a href='#' id='clearTextBox'>Clear Text</a><!--clear textarea-->
-
-			</form>
-
-			<div class='row'>
-
-				<div class='catchText col-sm-5'>
-
-					<ul id='logSelection'></ul><!--log hyperlinks will go here-->
-
-				</div>
-
-				<div class='col-sm-7'>
-
-					<ul id='commitArrayList'></ul><!--text logs will go here-->
-
-				</div>
-
-			</div><!--end of row-->
-
-			<button id='commitArrayLoad' class='btn btn-success'>Load</button>
-
-			<button id='commitArraySave' class='btn btn-info'>Commit</button>
-
-			<button id='loadAjaxSave' class='btn btn-warning'>Ajax</button>
-
-		</div><!--end of text commit container -->
 
 	</div><!--end of main container-->
 
@@ -230,15 +169,6 @@
 
 	</div><!--end of modal-->
 
-	<div id='tooltip_container'>this is my tooltip</div>
-	<div class='tooltip-html-source'>
-		<div id="tooltip-sidebar">
-			<div class='red_circle' style='float:left;'></div>
-			This is a tip that has<strong><em style='color: #ffe19a;"'>HTML-formatted</em></strong>
-			content including a red circle.
-			<div class='clear-all'></div>
-		</div>
-	</div>
 	<!--javascript-->
 		<!--jQuery CDN
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
