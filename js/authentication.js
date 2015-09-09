@@ -1,154 +1,127 @@
-var errors = [],
-	requiredFields = [];
-
+var errors = {},
+	requiredFields = [],
+	inputLoginPrefix = "login_",
+	inputSignupPrefix = "signup_",
+	errorsSuffix = "_errors";
 
 $('form#signUpForm').submit(function(e){
 	e.preventDefault();
-	submitData('signup');
+	authenticate(inputSignupPrefix,errorsSuffix,e);
 });
 
 $('form#loginForm').submit(function(e){
 	e.preventDefault();
-	submitData('login');
+	authenticate(inputLoginPrefix,errorsSuffix,e);
 });
 
-(function(){
-	authenticate();
-})();
-
-function User(config)
+function errorsAnimation()
 {
-	this.username = config.username;
-	this.password = config.password;
-	this.email = config.email;
-	this.id = 0;
-}
-
-function submitData(formType)
-{
-	var formId = (formType === "login") ? "#login" : (formType === "signup") ? "#signUp" : "",
-		username = $(formId + "User"),
-		email = $(formId + "Email"),
-		password = $(formId + "Password"),
-		obj = new User({
-			"username":username.val(),
-			"email":email.val(),
-			"password":password.val()
+	$.each($('[id$="_errors"]'),function(val, key){
+		$(this).toggleClass('dismissed');
+	});
+	setTimeout(function(){
+		$.each($('[id$="_errors"]'),function(val, key){
+			$(this).toggleClass('dismissed');
 		});
-
-	if(formType === "signup")	
-
-		requiredFields = ["username","email","password"];
-
-	else if(formType === "login")
-
-		requiredFields = ["username","password"];
-
-	localStorage.formType = JSON.stringify(formType);
-	localStorage.submission = JSON.stringify(obj);
-	localStorage.requiredFields = JSON.stringify(requiredFields);
-	location.reload();
+	},140);
 }
 
-function authenticate()
+function authenticate(inputPrefix,errorsSuffix,event)
 {
-	if(localStorage.submission)
+	errors = {};
+	var prefixFields = $('[id^="' + inputPrefix + '"]'),
+		prefixSpliceLength = inputPrefix.length;
+	for(var i = 0; i < prefixFields.length; i++)
 	{
-		console.log('submission');
-		var obj = JSON.parse(localStorage.submission),
-			fields = JSON.parse(localStorage.requiredFields);
-		
-		requiredFields = fields;
-		if(checkRequiredFields(obj))
-		{
-			databaseAuthenticate(obj);
-		}
-
-		reportErrors();
-		localStorage.removeItem('submission');
-		localStorage.removeItem('requiredFields');
-		localStorage.removeItem('formType');
+		requiredFields[i] = prefixFields[i].id.substr(prefixSpliceLength);
 	}
-}
-
-function hasPresence(string){
-	return !(string.trim() === "" && string.trim().length <= 0);
-}
-
-function checkRequiredFields(object){
-
-	for(var i = 0; i < requiredFields.length;i++)
+	
+	var obj = new User();
+	for(var i = 0; i < requiredFields.length; i++)
 	{
-		var value = object[requiredFields[i]].trim();
-		if(!hasPresence(value))
-		{
-			errors.push(requiredFields[i].toUpperCase() + " can't be blank");
-		}
+		obj[requiredFields[i]] = $( '#' + inputPrefix + requiredFields[i] ).val();
 	}
 
-	if(isEmptyArray(errors)) return true;
-	else return false;
-}
-
-function isEmptyArray(array)
-{
-	return array.length === 0;
-}
-
-function reportErrors(object)
-{
-	var formErrors = document.getElementById('formErrors');
-	formErrors.innerHTML = "";
-	if(!isEmptyArray(errors))
+	if(requiredFieldsExist(obj)) 
 	{
-		for(var i = 0; i < errors.length;i++)
+		if(event.target.id === "loginForm")
 		{
-			formErrors.innerHTML += errors[i] + "</br>";
-		}
-	}
-}
+			if(isFoundInDatabase(obj))
+			{
+				userLogin();
+			}
+			else
+			{
+				var values = "";
+				for(var i = 0; i < requiredFields.length;i++)
+				{
+					values += requiredFields[i];
 
-function databaseAuthenticate(obj)
-{
-	if(!localStorage.userDatabase) localStorage.userDatabase = JSON.stringify([]);
-	if(JSON.parse(localStorage.formType) === "signup")
-	{
-		if(JSON.parse(localStorage.userDatabase).length > 0)
+					if(i < requiredFields.length - 1) values += "/";
+				}
+
+				values += " invalid";
+
+				for(var i = 0; i < requiredFields.length;i++)
+				{
+					var value = obj[requiredFields[i]];
+					errors[requiredFields[i]] = values;
+				}
+			}
+		}
+		else if(event.target.id === "signUpForm")
 		{
 			if(isAlreadyInDatabase(obj))
 			{
-				errors.push(obj.username + " already exists");
+				errors["username"] = obj.username + " already exists ";
 			}
 			else
 			{
 				pushToDatabase(obj);
-				localStorage.loggedIn = "true";
-				window.location = "commitApp.html";
+				userLogin();
 			}
 		}
-		else
-		{
-			pushToDatabase(obj);
-			localStorage.loggedIn = "true";
-			window.location = "commitApp.html";
-		}
 	}
-	else if(JSON.parse(localStorage.formType) === "login")
+
+	reportErrors();
+
+	$('[id^="' + inputPrefix + '"').val('');
+}
+
+function hasPresence(string)
+{
+	return !(string === "" && string.length <= 0);
+}
+
+function requiredFieldsExist(obj)
+{
+	for(var i = 0; i < requiredFields.length;i++)
 	{
-		if(isFoundInDatabase(obj))
+		var value = obj[requiredFields[i]].trim();
+		if(!hasPresence(value))
 		{
-			localStorage.loggedIn = "true";
-			window.location = "commitApp.html";
-		}
-		else
-		{
-			errors.push("Invalid Username/Password");
+			errors[requiredFields[i]] = requiredFields[i] + " cant be blank";
 		}
 	}
+
+	if(isEmptyObject(errors)) return true;
+	else return false;
+}
+
+function isFoundInDatabase(obj)
+{
+	if(!localStorage.userDatabase) localStorage.userDatabase = JSON.stringify([]);
+	var database = JSON.parse(localStorage.userDatabase);
+	for(var i = 0; i < database.length;i++)
+	{
+		if(obj.username === database[i].username && obj.password === database[i].password) return true;
+	}
+	return false;
 }
 
 function isAlreadyInDatabase(obj)
 {
+	if(!localStorage.userDatabase) localStorage.userDatabase = JSON.stringify([]);
 	var database = JSON.parse(localStorage.userDatabase);
 	for(var i = 0; i < database.length;i++)
 	{
@@ -157,23 +130,42 @@ function isAlreadyInDatabase(obj)
 	return false;
 }
 
-function isFoundInDatabase(obj)
-{
-	var database = JSON.parse(localStorage.userDatabase);
-	for(var i = 0; i < database.length;i++)
-	{
-		if(obj.username === database[i].username && obj.password === database[i].password)
-		{
-			return true;
-		}
-	}
-	return false;
-}
-
 function pushToDatabase(obj)
 {
+	if(!localStorage.userDatabase) localStorage.userDatabase = JSON.stringify([]);
 	var database = JSON.parse(localStorage.userDatabase);
 	database.push(obj);
 	localStorage.userDatabase = JSON.stringify(database);
+}
+
+function userLogin()
+{
+	window.location = "commitApp.html";
+}
+
+function isEmptyObject(object)
+{
+	for(var prop in object)
+	{
+		if(object.hasOwnProperty(prop)) return false;
+	}
+	return true;
+}
+
+function User(config){}
+
+function reportErrors()
+{
+	$('[id$="' + errorsSuffix + '"]').text('');
+	if(!isEmptyObject(errors))
+	{
+		for(var prop in errors)
+		{
+			var $error_element = $( "#" + prop + errorsSuffix);
+			$error_element.text(errors[prop]);
+		}
+
+		errorsAnimation();
+	}
 }
 
