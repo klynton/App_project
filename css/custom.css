@@ -132,10 +132,53 @@ MAIN PAGE: NAVIGATION MENUS
 	visibility:visible;
 	opacity:1;
 	padding:20px;
+	margin-top:50px;
 	border-radius:8px;
 	position:absolute;
 	transform:translate(-50%,0);
-	transition:visibility 0.55s ease 0s, opacity 0.55s ease 0s,left 0.65s ease 0s;
+	-moz-transform:translate(-50%,0);
+	-o-transform:translate(-50%,0);
+	-webkit-transform:translate(-50%,0);
+	-ms-transform:translate(-50%,0);
+}
+
+#loginTitle,#signUpTitle
+{
+	font-size:2em;
+	color:rgba(0,0,0,0.6);
+	font-weight:bold;
+}
+
+#signUpDirection
+{
+	margin-right:20px;
+}
+
+[id$="_errors"]
+{
+	margin-top:33px;
+	color: red;
+	font-weight:bold;
+	font-style:italic;
+	position: relative;
+	left:0;
+	transition:left 0.35s ease-out 0s,visibility 0.35s ease-in 0s, opacity 0.35s ease-in 0s;
+	-moz-transition:left 0.35s ease-out 0s,visibility 0.35s ease-in 0s, opacity 0.35s ease-in 0s;
+	-o-transition:left 0.35s ease-out 0s,visibility 0.35s ease-in 0s, opacity 0.35s ease-in 0s;
+	-webkit-transition:left 0.35s ease-out 0s,visibility 0.35s ease-in 0s, opacity 0.35s ease-in 0s;
+	-ms-transition:left 0.35s ease-out 0s,visibility 0.35s ease-in 0s, opacity 0.35s ease-in 0s;
+}
+
+[id$="_errors"].dismissed
+{
+	left:-50px;
+	visibility:hidden;
+	opacity:0;
+	transition:none;
+	-webkit-transition:none;
+	-o-transition:none;
+	-ms-transition:none;
+	-moz-transition:none;
 }
 
  .commitFormMenu input
@@ -145,6 +188,12 @@ MAIN PAGE: NAVIGATION MENUS
 	font-size:1.3em;
 	padding:10px;
 	border-radius:6px;
+}
+
+#loginSubmit,#signUpSubmit
+{
+	display:block;
+	width:100%;
 }
 /************************
 MAIN CONTENT - PURCHASE FORM
