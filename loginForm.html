@@ -33,34 +33,41 @@
 	<!--LOGIN FORM-->
 	<div class='container'>
 
-		<div class='commitFormMenu' id='commitLogin'>
-			<a href="signUpForm.html" class='pull-right'>Sign up here!</a>
-			<span class='pull-right' id='signUpDirection'>No account yet?</span>
+		<div class='commitFormMenu' id='commitLogin' class='row'>
 
-			<div id='loginTitle'>Login</div>
+			<div class='row'>
+				<div class='col-xs-12 col-sm-4 col-md-4 loginContainer'>
+					<div id='loginTitle'>Login</div>
+				</div>
+				<div class=' pull-right col-xs-12 col-sm-7 col-md-7 col-md-offset-1 signUpDirectionalContainer'>
+						<span id='signUpDirection'>No account yet?</span>
+						<a href="signUpForm.html" >Sign up here!</a>
+				</div>
+			</div>
 
 			<form id='loginForm'>
 
 				<div class='row'>
 
-					<div class='col-sm-6'>
+					<div class='col-sm-7'>
 						<label for='login_username'>User Name</label>
 						<input type='text' id='login_username' placeholder='Enter User name'>
 					</div>
 
-					<div class='col-sm-6'>
+					<div class='col-sm-5'>
 						<div id='username_errors' class=''></div>
 					</div>
 
 				</div>
+
 				<div class='row'>
 
-					<div class='col-sm-6'>
+					<div class='col-sm-7'>
 						<label for='login_password'>Password</label>
 						<input type='password' id='login_password' placeholder='Enter password'>
 					</div>
 
-					<div class='col-sm-6'>
+					<div class='col-sm-5'>
 						<div id='password_errors' class=''></div>
 					</div>
 				</div>

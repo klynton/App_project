@@ -142,6 +142,13 @@ MAIN PAGE: NAVIGATION MENUS
 	-ms-transform:translate(-50%,0);
 }
 
+.commitFormMenu input:not([type="submit"])
+{
+	width:90%;
+}
+
+
+
 #loginTitle,#signUpTitle
 {
 	font-size:2em;
@@ -149,19 +156,20 @@ MAIN PAGE: NAVIGATION MENUS
 	font-weight:bold;
 }
 
-#signUpDirection
+.signUpDirectionalContainer > div
 {
-	margin-right:20px;
+	padding:0;
+	margin-right:-15px;
 }
+
 
 [id$="_errors"]
 {
-	margin-top:33px;
+	
 	color: red;
 	font-weight:bold;
 	font-style:italic;
-	position: relative;
-	left:0;
+	
 	transition:left 0.35s ease-out 0s,visibility 0.35s ease-in 0s, opacity 0.35s ease-in 0s;
 	-moz-transition:left 0.35s ease-out 0s,visibility 0.35s ease-in 0s, opacity 0.35s ease-in 0s;
 	-o-transition:left 0.35s ease-out 0s,visibility 0.35s ease-in 0s, opacity 0.35s ease-in 0s;
@@ -184,7 +192,6 @@ MAIN PAGE: NAVIGATION MENUS
  .commitFormMenu input
 {
 	display:block;
-	margin-bottom:10px;
 	font-size:1.3em;
 	padding:10px;
 	border-radius:6px;
@@ -249,4 +256,61 @@ DEV TOOLS
 .clear-all:after
 {
 	clear:both;
+}
+
+/****************************
+	MEDIA QUERIES
+***************************/
+
+@media (min-width:768px){
+	.commitFormMenu
+	{
+		width:60%;
+		max-width:600px;
+	}
+
+	.commitFormMenu input
+	{
+		margin-bottom:10px;
+	}
+
+	[id$="_errors"]
+	{
+		margin-top:33px;
+		position: relative;
+		left:0;
+	}
+
+	.signUpDirectionalContainer > div
+	{
+		float:left;
+	}
+
+	.loginDirectional
+	{
+		float:right;
+	}
+
+	.pull-right.col-xs-12.col-sm-7.col-md-7.col-md-offset-1.signUpDirectionalContainer
+	{
+		padding-left:95px;
+	}
+}
+
+@media (max-width:768px){
+	.commitFormMenu
+	{
+		width:90%;
+		max-width:none;
+	}
+
+	.commitFormMenu label,.commitFormMenu input[type='submit']
+	{
+		margin-top:20px;
+	}
+
+	.signUpDirectionalContainer > div
+	{
+		margin-left:0;
+	}
 }

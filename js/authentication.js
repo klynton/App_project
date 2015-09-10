@@ -297,5 +297,3 @@ function User(config){}
 
 formHandler.bindFormSubmits();
 
-
-
