@@ -90,7 +90,7 @@ var formHandler = (function(){
 					{
 
 						//if there's a user account match, allow the user to login
-						this.userLogin();
+						this.userLogin(obj);
 					
 					}
 					else
@@ -139,7 +139,7 @@ var formHandler = (function(){
 						//if there's no match, push the new user's information to the
 						//database and allow the user to log in
 						this.pushToDatabase(obj);
-						this.userLogin();
+						this.userLogin(obj);
 					}
 				}
 			}
@@ -247,8 +247,10 @@ var formHandler = (function(){
 			localStorage.userDatabase = JSON.stringify(database);
 		},
 
-		userLogin:function()
+		userLogin:function(user)
 		{
+			user.loggedIn = true;
+			localStorage.primaryUser = JSON.stringify(user);
 			//change the window address
 			window.location = "commitApp.html";
 		},
@@ -293,7 +295,9 @@ var formHandler = (function(){
 	}
 })();
 
-function User(config){}
+function User(){
+	this.loggedIn = false;
+}
 
 formHandler.bindFormSubmits();
 

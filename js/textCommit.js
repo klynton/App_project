@@ -241,14 +241,38 @@ var textObj = (function(){
 			this.logSelect.on("click","li", logClickEvent);
 
 			this.clearText.click(function(e){e.preventDefault();textObj.textField.val('');clearInterval(textObj.resetTimer);});
+			window.onbeforeunload = textObj.unloadEvents;
+		},
 
-			$('#loadAjaxSave').click();
+		unloadEvents:function()
+		{
+			textObj.commitToArray();clearInterval(textObj.resetTimer);
+			if(localStorage.primaryUser)
+			{
+				var user = JSON.parse(localStorage.primaryUser);
+				user.loggedIn = false;
+				localStorage.primaryUser = JSON.stringify(user);
+			}
+		},
+
+		isAuthorizedUser:function()
+		{
+			if(localStorage.primaryUser)
+			{
+				var user = JSON.parse(localStorage.primaryUser);
+				if(user.loggedIn === true) return true;
+				else window.location = "loginForm.html";
+			}
+			else
+			{
+				window.location = "loginForm.html";
+			}
 		}
 	};
 })();
 
 textObj.bindEventHandlers();
-
+textObj.isAuthorizedUser();
 
 /************************
 TEXT COMMIT - FUNCTIONS
