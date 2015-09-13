@@ -251,6 +251,7 @@ var formHandler = (function(){
 		{
 			user.loggedIn = true;
 			localStorage.primaryUser = JSON.stringify(user);
+			sessionStorage.primaryUser = JSON.stringify(user,100000);
 			//change the window address
 			window.location = "commitApp.html";
 		},
