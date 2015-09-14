@@ -34,6 +34,10 @@ var textObj = (function(){
 
 		clearText:$('#clearTextBox'),
 
+		userName:$("#userName"),
+
+		primaryUser:"",
+
 		/***********************
 		METHODS
 		************************/
@@ -288,16 +292,21 @@ var textObj = (function(){
 			}
 		},
 
-		testIsNew:function()
+		writeUserData:function()
 		{
+			if(this.isAuthorizedUser)
+			{
+				this.primaryUser = JSON.parse(localStorage.primaryUser);
 
+				this.userName.text(this.primaryUser.username);
+			}
 		}
 	};
 })();
 
 textObj.commitButton.prop('disabled',true);
 textObj.bindEventHandlers();
-textObj.isAuthorizedUser();
+textObj.writeUserData();
 
 /************************
 TEXT COMMIT - FUNCTIONS

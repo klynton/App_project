@@ -314,3 +314,9 @@ DEV TOOLS
 		margin-left:0;
 	}
 }
+
+#pwConfirmContainer
+{
+	display:none;
+}
+
