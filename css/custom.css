@@ -202,6 +202,11 @@ MAIN PAGE: NAVIGATION MENUS
 	display:block;
 	width:100%;
 }
+
+#pwConfirmContainer
+{
+	display:none;
+}
 /************************
 MAIN CONTENT - PURCHASE FORM
 *************************/
@@ -313,10 +318,5 @@ DEV TOOLS
 	{
 		margin-left:0;
 	}
-}
-
-#pwConfirmContainer
-{
-	display:none;
 }
 
