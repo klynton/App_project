@@ -34,6 +34,10 @@ var textObj = (function(){
 
 		clearText:$('#clearTextBox'),
 
+		userName:$("#userName"),
+
+		primaryUser:"",
+
 		/***********************
 		METHODS
 		************************/
@@ -59,6 +63,8 @@ var textObj = (function(){
 
 				// 	//inject new information from list array to page HTML
 				 	this.commitOneLine();
+
+				 this.commitButton.prop('disabled',true);
 
 			}
 
@@ -171,6 +177,8 @@ var textObj = (function(){
 
 		savingTimer:function(e)
 		{
+			console.log('fired');
+			this.commitButton.prop('disabled',false);
 	
 			this.resetLimit = parseInt($('#timerSelect').val()) * 1000;
 
@@ -229,11 +237,19 @@ var textObj = (function(){
 			/***********************
 				TEXT COMMIT - EVENT HANDLERS
 			*********************/
-			$(document).on('input',this.textField,function(){textObj.savingTimer();});
+			$(this.textField).on('input',function(){textObj.savingTimer();});
 
 			this.loadButton.click(loadCommitedTextField);
 
-			this.commitButton.click(function(){textObj.commitToArray();clearInterval(textObj.resetTimer);});
+			this.commitButton.click(function()
+			{
+				textObj.commitToArray();
+				clearInterval(textObj.resetTimer);
+				//set save state text to 'saved'
+				textObj.saveStateField.text('saved');
+				//set interval where a few seconds of inactivity causes save state text to turn 'inactive'
+				textObj.saveStatus = setInterval(function(){textObj.saveStateField.text('inactive'); clearInterval(textObj.saveStatus)},840);
+			});
 
 			//setting jQuery's .on('click') method to textObj.logSelect's list item children
 			//handles delegation as well, so that the log hypertext links dont need to
@@ -246,7 +262,8 @@ var textObj = (function(){
 
 		unloadEvents:function()
 		{
-			textObj.commitToArray();clearInterval(textObj.resetTimer);
+			textObj.commitToArray();
+			clearInterval(textObj.resetTimer);
 			if(localStorage.primaryUser)
 			{
 				var user = JSON.parse(localStorage.primaryUser);
@@ -257,7 +274,13 @@ var textObj = (function(){
 
 		isAuthorizedUser:function()
 		{
-			if(localStorage.primaryUser)
+			if(sessionStorage.primaryUser)
+			{
+				var user = JSON.parse(sessionStorage.primaryUser);
+				if(user.loggedIn === true) return true;
+				else window.location = "loginForm.html";
+			}
+			else if(localStorage.primaryUser)
 			{
 				var user = JSON.parse(localStorage.primaryUser);
 				if(user.loggedIn === true) return true;
@@ -267,12 +290,23 @@ var textObj = (function(){
 			{
 				window.location = "loginForm.html";
 			}
+		},
+
+		writeUserData:function()
+		{
+			if(this.isAuthorizedUser)
+			{
+				this.primaryUser = JSON.parse(localStorage.primaryUser);
+
+				this.userName.text(this.primaryUser.username);
+			}
 		}
 	};
 })();
 
+textObj.commitButton.prop('disabled',true);
 textObj.bindEventHandlers();
-textObj.isAuthorizedUser();
+textObj.writeUserData();
 
 /************************
 TEXT COMMIT - FUNCTIONS
@@ -306,10 +340,10 @@ function logClickEvent(event)
 
 
 		scrollTop: ( 
-			correspondingCommitLog.parent()
-			.position().top + 
-			textObj.commitList
-			.scrollTop() 
+			correspondingCommitLog.parent()//take the number of pixels from 
+			.position().top + // the parent tag to the top of the scroll container
+			textObj.commitList //add the number in pixels that the 
+			.scrollTop() //scroll block is from the top of the scroll bar
 			)
 
 	});
