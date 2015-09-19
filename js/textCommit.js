@@ -307,7 +307,7 @@ var textObj = (function(){
 
 		writeUserData:function()
 		{
-			if(this.isAuthorizedUser)
+			if(this.isAuthorizedUser())
 			{
 				//if authorization succeeds, retrieve the primary user data and 
 				//cache it in the text object variables
