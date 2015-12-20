@@ -33,6 +33,63 @@
 	<!--MAIN CONTAINER-->
 	<div class='container'>
 
+		<div class="workDay">
+
+			<h3>Day 1</h3>
+
+			<label for="day1Hours">Hours</label>
+			<input type='text' id="day1Hours">
+			<label for="day1Minutes">Minutes</label>
+			<input type='text' id='day1Minutes'>
+			<button id='day1Calc' class='addHours'>Add</button>
+
+		</div>
+
+		<div class="workDay">
+
+			<h3>Day 2</h3>
+
+			<label for="day2Hours">Hours</label>
+			<input type='text' id="day2Hours">
+			<button id='day2Calc' class='addHours'>Add</button>
+
+		</div>
+
+
+		<div class="workDay">
+
+			<h3>Day 3</h3>
+
+			<label for="day3Hours">Hours</label>
+			<input type='text' id="day3Hours">
+			<button id='day3Calc' class='addHours'>Add</button>
+
+		</div>
+
+
+		<div class="workDay">
+
+			<h3>Day 4</h3>
+
+			<label for="day4Hours">Hours</label>
+			<input type='text' id="day4Hours">
+			<button id='day4Calc' class='addHours'>Add</button>
+
+		</div>
+
+		<div id='totalContainer'>
+			<label for='hourlyRate'>Hourly Rate</label>
+			<input id='hourlyRate' type='text'>
+			<label for='overTimeRate'>Overtime Rate</label>
+			<input id='overTimeRate' type='text'>
+			<p>TotalHours</p>
+			<div id='workWeekTotal'></div>
+			<p>TotalPay</p>
+			<div id='workWeekPay'></div>
+			<p>Decimal Hours</p>
+			<div id='decimalHours'></div>
+		</div>
+
 
 	</div><!--end of main container-->
 	<!--javascript-->
@@ -49,6 +106,50 @@
 		<script src='js/bootstrap.min.js'></script>
 
 	<!--CUSTOM JS FILE-->
+	<script type='text/javascript'>
+		function customTime(minutes)
+		{
+			return parseFloat("" + (Math.floor(2 / 60 * 100) / 100).toFixed(2));
+		}
+		function secondsToTime(secs)
+		{
+			secs *= 60;
+		    var hours = Math.floor(secs / (60 * 60));
+		   
+		    var divisor_for_minutes = secs % (60 * 60);
+		    var minutes = Math.floor(divisor_for_minutes / 60);
+		 
+		    var divisor_for_seconds = divisor_for_minutes % 60;
+		    var seconds = Math.ceil(divisor_for_seconds);
+		   
+		    var obj = {
+		        "h": hours,
+		        "m": minutes,
+		        "s": seconds
+		    };
+		    return obj;
+		}
+		function timeStringToFloat(time) {
+		  var hoursMinutes = time.split(/[.:]/);
+		  var hours = parseInt(hoursMinutes[0], 10);
+		  var minutes = hoursMinutes[1] ? parseInt(hoursMinutes[1], 10) : 0;
+		  return hours + minutes / 60;
+		}
+		function deciHours(time) {
+		    return (function(i) {return i+(Math.round(((time-i)*60),10)/100);})(parseInt(time, 10));
+		}
+		var workTime = 0;
+		$('.addHours').click(function(){
+
+			workHours += parseFloat($(this).prev().val());
+
+			$('#workWeekTotal').text(workHours.toFixed(2));
+			$('#workWeekPay').text(workHours * parseFloat($("#hourlyRate").val()));
+			var minutes = parseInt(workHours * 60);
+			var decimalHours = Math.floor(minutes / 60 * 100) / 100;
+			$("#decimalHours").text(decimalHours)
+		});
+	</script>
 		
 	</body>
 </html>

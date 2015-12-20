@@ -177,7 +177,8 @@ var textObj = (function(){
 
 		savingTimer:function(e)
 		{
-			console.log('fired');
+
+			//enable commit button 
 			this.commitButton.prop('disabled',false);
 	
 			this.resetLimit = parseInt($('#timerSelect').val()) * 1000;
@@ -244,6 +245,7 @@ var textObj = (function(){
 			this.commitButton.click(function()
 			{
 				textObj.commitToArray();
+				//interrupt the timer
 				clearInterval(textObj.resetTimer);
 				//set save state text to 'saved'
 				textObj.saveStateField.text('saved');
@@ -262,31 +264,42 @@ var textObj = (function(){
 
 		unloadEvents:function()
 		{
+			//when page unloads, commit log to the array to save potentially lost data
 			textObj.commitToArray();
+
+			//interrupt save timer
 			clearInterval(textObj.resetTimer);
+
+			//store the committed log to the local storage
 			if(localStorage.primaryUser)
 			{
 				var user = JSON.parse(localStorage.primaryUser);
+
+				//log the user out
 				user.loggedIn = false;
+
 				localStorage.primaryUser = JSON.stringify(user);
 			}
 		},
 
 		isAuthorizedUser:function()
 		{
+
+			//check the sessionStorage primary user first
+			//to determine if the user left the page or simply reloaded
 			if(sessionStorage.primaryUser)
 			{
 				var user = JSON.parse(sessionStorage.primaryUser);
-				if(user.loggedIn === true) return true;
-				else window.location = "loginForm.html";
+				if(user.loggedIn === true) return true;//if the user is logged in, accept the authorization and load the page
+				else window.location = "loginForm.html";//if the user is not logged in, redirect them to the login page
 			}
-			else if(localStorage.primaryUser)
+			else if(localStorage.primaryUser)//if there's no primary user in the sessionstorage check the localstorage
 			{
 				var user = JSON.parse(localStorage.primaryUser);
-				if(user.loggedIn === true) return true;
-				else window.location = "loginForm.html";
+				if(user.loggedIn === true) return true;//if the user is logged in, accept the authorization and load the page
+				else window.location = "loginForm.html";//if the user is not logged in, redirect them to the login page
 			}
-			else
+			else// if there's no primary user logged into the localstorage or sessionstorage, redirect them to the login page
 			{
 				window.location = "loginForm.html";
 			}
@@ -294,17 +307,19 @@ var textObj = (function(){
 
 		writeUserData:function()
 		{
-			if(this.isAuthorizedUser)
+			if(this.isAuthorizedUser())
 			{
+				//if authorization succeeds, retrieve the primary user data and 
+				//cache it in the text object variables
 				this.primaryUser = JSON.parse(localStorage.primaryUser);
 
+				//write the logged in username to the page
 				this.userName.text(this.primaryUser.username);
 			}
 		}
 	};
 })();
 
-textObj.commitButton.prop('disabled',true);
 textObj.bindEventHandlers();
 textObj.writeUserData();
 
@@ -374,3 +389,4 @@ function enableTab(id) {
 
 enableTab('testTextField');
 /**************************/
+
